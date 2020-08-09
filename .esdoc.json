@@ -13,7 +13,7 @@
           "autoPrivate": true
         },
         "brand": {
-          "title": "@aureooms/js-fibonacci-heap"
+          "title": "@aureooms/js-cll"
         },
         "test": {
           "type": "ava",
@@ -24,8 +24,7 @@
             "./doc/manual/overview.md",
             "./doc/manual/installation.md",
             "./doc/manual/usage.md",
-            "./doc/manual/example.md",
-            "./doc/manual/theory.md"
+            "./doc/manual/example.md"
           ]
         }
       }
