@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../">
-  <title data-ice="title">Function | @aureooms/js-fibonacci-heap</title>
+  <title data-ice="title">Function | @aureooms/js-cll</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
-<link rel="stylesheet" href="./inject/css/0-style.css"><script src="./inject/script/0-header.js"></script><meta name="description" content="Fibonacci heap data structure for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@aureooms/js-fibonacci-heap"><meta property="twitter:description" content="Fibonacci heap data structure for JavaScript"></head>
+<link rel="stylesheet" href="./inject/css/0-style.css"><script src="./inject/script/0-header.js"></script><meta name="description" content="Circular Linked Lists for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@aureooms/js-cll"><meta property="twitter:description" content="Circular Linked Lists for JavaScript"></head>
 <body class="layout-container" data-ice="rootContainer">
 
 <header>
@@ -24,22 +24,24 @@
   </span>
     <ul class="search-result"></ul>
   </div>
-<a style="position:relative; top:3px;" href="https://github.com/aureooms/js-fibonacci-heap"><img width="20px" src="./image/github.png"></a></header>
+<a style="position:relative; top:3px;" href="https://github.com/aureooms/js-cll"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/FibonacciHeap.js~FibonacciHeap.html">FibonacciHeap</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Node.js~Node.html">Node</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cascading_cut">cascading_cut</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-consolidate">consolidate</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cut">cut</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-link">link</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-list_concatenate">list_concatenate</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-list_insert">list_insert</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-list_iter">list_iter</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-list_remove">list_remove</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-list_reset_parent">list_reset_parent</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Node">Node</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_append">_append</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_concat">_concat</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_iter">_iter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_remove">_remove</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-concat">concat</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-empty">empty</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-from">from</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-iter">iter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-pop">pop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-push">push</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shift">shift</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unshift">unshift</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -62,8 +64,8 @@
         <p>
           
           
-          <span data-ice="generator">*</span>
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-cascading_cut">cascading_cut</a></span></span><span class="code" data-ice="signature">(y: <span>*</span>)</span>
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-Node">Node</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>)</span>
         </p>
       </div>
       <div>
@@ -91,13 +93,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-consolidate">consolidate</a></span></span><span class="code" data-ice="signature">(compare: <span>*</span>, l: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-concat">concat</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>, y: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>CONSOLIDATE: Consolidate the root list of a heap.</p>
+        <div data-ice="description"><p>Concatenate two input lists.</p>
 </div>
       </div>
     </td>
@@ -120,41 +122,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-cut">cut</a></span></span><span class="code" data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-empty">empty</a></span></span><span class="code" data-ice="signature">(): <span><a href="function/index.html#static-function-Node">Node</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-link">link</a></span></span><span class="code" data-ice="signature">(y: <span>*</span>, x: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>FIB-HEAP-LINK</p>
+        <div data-ice="description"><p>Return an empty list.</p>
 </div>
       </div>
     </td>
@@ -177,41 +151,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-list_concatenate">list_concatenate</a></span></span><span class="code" data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-from">from</a></span></span><span class="code" data-ice="signature">(iterable: <span>Iterable</span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-list_insert">list_insert</a></span></span><span class="code" data-ice="signature">(a: <span>*</span>, x: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Optimization of list_concatenate when x contains a single element.</p>
+        <div data-ice="description"><p>Creates a list from an input iterable.</p>
 </div>
       </div>
     </td>
@@ -234,42 +180,13 @@
           
           
           <span data-ice="generator">*</span>
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-list_iter">list_iter</a></span></span><span class="code" data-ice="signature">(children: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-iter">iter</a></span></span><span class="code" data-ice="signature">(first: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>Iterable</span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-list_remove">list_remove</a></span></span><span class="code" data-ice="signature">(y: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>/!\ pointers in the extracted node are left unchanged
-/!\ y will have dangling pointers after removal if not single element</p>
+        <div data-ice="description"><p>Generator of nodes in list in order.</p>
 </div>
       </div>
     </td>
@@ -292,13 +209,223 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-list_reset_parent">list_reset_parent</a></span></span><span class="code" data-ice="signature">(children: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-pop">pop</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>[Node, Node]</span></span>
         </p>
       </div>
       <div>
         
         
+        <div data-ice="description"><p>Removes last <span><a href="function/index.html#static-function-Node">Node</a></span> from a list.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-push">push</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
         
+        
+        <div data-ice="description"><p>Push value to list.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-shift">shift</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>[Node, Node]</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Removes first <span><a href="function/index.html#static-function-Node">Node</a></span> from a list.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-unshift">unshift</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Unshift value to list.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+<table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Static Private Summary</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">private</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_append">_append</a></span></span><span class="code" data-ice="signature">(a: <span><a href="function/index.html#static-function-Node">Node</a></span>, x: <span><a href="function/index.html#static-function-Node">Node</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Optimization of <span><a href="function/index.html#static-function-_concat">_concat</a></span> when <code>x</code> contains a single element.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">private</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_concat">_concat</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>, y: <span><a href="function/index.html#static-function-Node">Node</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Concatenate two input lists.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">private</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="generator">*</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_iter">_iter</a></span></span><span class="code" data-ice="signature">(first: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>Iterable</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Generator of nodes in list in order.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">private</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_remove">_remove</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Removes input <span><a href="function/index.html#static-function-Node">Node</a></span> from its list.</p>
+</div>
       </div>
     </td>
     <td>
@@ -312,22 +439,22 @@
 <div data-ice="details"><h2 data-ice="title">Static Public </h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-cascading_cut">
+  <h3 data-ice="anchor" id="static-function-Node">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="generator">*</span>
-    <span class="code" data-ice="name">cascading_cut</span><span class="code" data-ice="signature">(y: <span>*</span>)</span>
+    
+    <span class="code" data-ice="name">Node</span><span class="code" data-ice="signature">(value: <span>*</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/cascading_cut.js.html#lineNumber3">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Node.js.html#lineNumber1">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import cascading_cut from &apos;<span><a href="file/src/cascading_cut.js.html#lineNumber3">@aureooms/js-fibonacci-heap/src/cascading_cut.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Node from &apos;<span><a href="file/src/Node.js.html#lineNumber1">@aureooms/js-cll/src/Node.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -343,7 +470,7 @@
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">y</td>
+      <td data-ice="name" class="code" data-depth="0">value</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
@@ -371,44 +498,25 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-consolidate">
+  <h3 data-ice="anchor" id="static-function-concat">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">consolidate</span><span class="code" data-ice="signature">(compare: <span>*</span>, l: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">concat</span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>, y: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/consolidate.js.html#lineNumber29">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/concat.js.html#lineNumber11">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import consolidate from &apos;<span><a href="file/src/consolidate.js.html#lineNumber29">@aureooms/js-fibonacci-heap/src/consolidate.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import concat from &apos;<span><a href="file/src/concat.js.html#lineNumber11">@aureooms/js-cll/src/concat.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>CONSOLIDATE: Consolidate the root list of a heap.</p>
-<p>The next step, in which we reduce the number of trees in the Fibonacci heap,
-is consolidating the root list of H, which the call CONSOLIDATE(H)
-accomplishes. Consolidating the root list consists of repeatedly executing
-the following steps until every root in the root list has a distinct degree
-value:</p>
-<ol>
-<li><p>Find two roots x and y in the root list with the same degree. Without
-loss of generality, let x.key &lt;= y.key.</p>
-</li>
-<li><p>Link y to x: remove y from the root list, and make y a child of x by
-calling the FIB-HEAP-LINK procedure. This procedure increments the
-attribute x:degree and clears the mark on y.</p>
-</li>
-</ol>
-<p>The procedure CONSOLIDATE uses an auxiliary array A[0..D(H.n)] to
-keep track of roots according to their degrees. If A[i] = y, then y is
-currently a root with y.degree = i. Of course, in order to allocate the
-array we have to know how to calculate the upper bound D(H.n) on the maximum
-degree, but we will see how to do so in Section 19.4.</p>
+  <div data-ice="description"><p>Concatenate two input lists.</p>
 </div>
 
   
@@ -422,17 +530,17 @@ degree, but we will see how to do so in Section 19.4.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">compare</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="name" class="code" data-depth="0">x</td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Comparison function.</p>
+      <td data-ice="description"><p>First node of first input list (can be null).</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">l</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="name" class="code" data-depth="0">y</td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Root list.</p>
+      <td data-ice="description"><p>First node of second input list (can be null).</p>
 </td>
     </tr>
 </tbody>
@@ -470,54 +578,46 @@ degree, but we will see how to do so in Section 19.4.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-cut">
+  <h3 data-ice="anchor" id="static-function-empty">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">cut</span><span class="code" data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+    <span class="code" data-ice="name">empty</span><span class="code" data-ice="signature">(): <span><a href="function/index.html#static-function-Node">Node</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/cut.js.html#lineNumber3">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/empty.js.html#lineNumber6">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import cut from &apos;<span><a href="file/src/cut.js.html#lineNumber3">@aureooms/js-fibonacci-heap/src/cut.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import empty from &apos;<span><a href="file/src/empty.js.html#lineNumber6">@aureooms/js-cll/src/empty.js</a></span>&apos;</code></pre></div>
   
   
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">x</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">y</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
+  <div data-ice="description"><p>Return an empty list.</p>
 </div>
 
   
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>The empty list.</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -535,26 +635,25 @@ degree, but we will see how to do so in Section 19.4.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-link">
+  <h3 data-ice="anchor" id="static-function-from">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">link</span><span class="code" data-ice="signature">(y: <span>*</span>, x: <span>*</span>)</span>
+    <span class="code" data-ice="name">from</span><span class="code" data-ice="signature">(iterable: <span>Iterable</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/link.js.html#lineNumber8">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/from.js.html#lineNumber9">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import link from &apos;<span><a href="file/src/link.js.html#lineNumber8">@aureooms/js-fibonacci-heap/src/link.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import from from &apos;<span><a href="file/src/from.js.html#lineNumber9">@aureooms/js-cll/src/from.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>FIB-HEAP-LINK</p>
-<p>Precondition: y is in the root list of some heap.</p>
+  <div data-ice="description"><p>Creates a list from an input iterable.</p>
 </div>
 
   
@@ -568,23 +667,30 @@ degree, but we will see how to do so in Section 19.4.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">y</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="name" class="code" data-depth="0">iterable</td>
+      <td data-ice="type" class="code"><span>Iterable</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">x</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The input iterable.</p>
+</td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -602,25 +708,26 @@ degree, but we will see how to do so in Section 19.4.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-list_concatenate">
+  <h3 data-ice="anchor" id="static-function-iter">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    
-    <span class="code" data-ice="name">list_concatenate</span><span class="code" data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+    <span data-ice="generator">*</span>
+    <span class="code" data-ice="name">iter</span><span class="code" data-ice="signature">(first: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>Iterable</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/list_concatenate.js.html#lineNumber1">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/iter.js.html#lineNumber8">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import list_concatenate from &apos;<span><a href="file/src/list_concatenate.js.html#lineNumber1">@aureooms/js-fibonacci-heap/src/list_concatenate.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import iter from &apos;<span><a href="file/src/iter.js.html#lineNumber8">@aureooms/js-cll/src/iter.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Generator of nodes in list in order.</p>
+</div>
 
   
 
@@ -633,23 +740,30 @@ degree, but we will see how to do so in Section 19.4.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">x</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="name" class="code" data-depth="0">first</td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">y</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>First node of the list (can be null).</p>
+</td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>Iterable</span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -667,26 +781,336 @@ degree, but we will see how to do so in Section 19.4.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-list_insert">
+  <h3 data-ice="anchor" id="static-function-pop">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">list_insert</span><span class="code" data-ice="signature">(a: <span>*</span>, x: <span>*</span>)</span>
+    <span class="code" data-ice="name">pop</span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>[Node, Node]</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/list_insert.js.html#lineNumber5">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/pop.js.html#lineNumber11">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import list_insert from &apos;<span><a href="file/src/list_insert.js.html#lineNumber5">@aureooms/js-fibonacci-heap/src/list_insert.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import pop from &apos;<span><a href="file/src/pop.js.html#lineNumber11">@aureooms/js-cll/src/pop.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>Optimization of list_concatenate when x contains a single element.
-Works even if x has dangling pointers x.next and x.prev.</p>
+  <div data-ice="description"><p>Removes last <span><a href="function/index.html#static-function-Node">Node</a></span> from a list.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">x</td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>First node .</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>[Node, Node]</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>New list (possibly null) and popped node.</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-push">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">push</span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/push.js.html#lineNumber11">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import push from &apos;<span><a href="file/src/push.js.html#lineNumber11">@aureooms/js-cll/src/push.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Push value to list.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">x</td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>First node of first input list (can be null).</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Value to push.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-shift">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">shift</span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>[Node, Node]</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/shift.js.html#lineNumber11">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import shift from &apos;<span><a href="file/src/shift.js.html#lineNumber11">@aureooms/js-cll/src/shift.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Removes first <span><a href="function/index.html#static-function-Node">Node</a></span> from a list.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">x</td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>First node .</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>[Node, Node]</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>New list (possibly null) and popped node.</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-unshift">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">unshift</span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/unshift.js.html#lineNumber11">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import unshift from &apos;<span><a href="file/src/unshift.js.html#lineNumber11">@aureooms/js-cll/src/unshift.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Unshift value to list.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">x</td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>First node of first input list (can be null).</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Value to unshift.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<h2 data-ice="title">Static Private </h2>
+
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-_append">
+    <span class="access" data-ice="access">private</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">_append</span><span class="code" data-ice="signature">(a: <span><a href="function/index.html#static-function-Node">Node</a></span>, x: <span><a href="function/index.html#static-function-Node">Node</a></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/_append.js.html#lineNumber10">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import _append from &apos;<span><a href="file/src/_append.js.html#lineNumber10">@aureooms/js-cll/src/_append.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Optimization of <span><a href="function/index.html#static-function-_concat">_concat</a></span> when <code>x</code> contains a single element.
+Works even if <code>x</code> has dangling pointers <code>x.next</code> and <code>x.prev</code>.</p>
 </div>
 
   
@@ -701,15 +1125,17 @@ Works even if x has dangling pointers x.next and x.prev.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">a</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>First node of list.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">x</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Node to be inserted at the end of list.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -734,25 +1160,94 @@ Works even if x has dangling pointers x.next and x.prev.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-list_iter">
-    <span class="access" data-ice="access">public</span>
+  <h3 data-ice="anchor" id="static-function-_concat">
+    <span class="access" data-ice="access">private</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">_concat</span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>, y: <span><a href="function/index.html#static-function-Node">Node</a></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/_concat.js.html#lineNumber9">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import _concat from &apos;<span><a href="file/src/_concat.js.html#lineNumber9">@aureooms/js-cll/src/_concat.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Concatenate two input lists.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">x</td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>First node of first input list.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">y</td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>First node of second input list.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-_iter">
+    <span class="access" data-ice="access">private</span>
     
     
     
     
     <span data-ice="generator">*</span>
-    <span class="code" data-ice="name">list_iter</span><span class="code" data-ice="signature">(children: <span>*</span>)</span>
+    <span class="code" data-ice="name">_iter</span><span class="code" data-ice="signature">(first: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>Iterable</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/list_iter.js.html#lineNumber1">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/_iter.js.html#lineNumber9">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import list_iter from &apos;<span><a href="file/src/list_iter.js.html#lineNumber1">@aureooms/js-fibonacci-heap/src/list_iter.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import _iter from &apos;<span><a href="file/src/_iter.js.html#lineNumber9">@aureooms/js-cll/src/_iter.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Generator of nodes in list in order.</p>
+</div>
 
   
 
@@ -765,17 +1260,30 @@ Works even if x has dangling pointers x.next and x.prev.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">children</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="name" class="code" data-depth="0">first</td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>First node of the list.</p>
+</td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>Iterable</span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -793,26 +1301,27 @@ Works even if x has dangling pointers x.next and x.prev.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-list_remove">
-    <span class="access" data-ice="access">public</span>
+  <h3 data-ice="anchor" id="static-function-_remove">
+    <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">list_remove</span><span class="code" data-ice="signature">(y: <span>*</span>)</span>
+    <span class="code" data-ice="name">_remove</span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/list_remove.js.html#lineNumber5">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/_remove.js.html#lineNumber11">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import list_remove from &apos;<span><a href="file/src/list_remove.js.html#lineNumber5">@aureooms/js-fibonacci-heap/src/list_remove.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import _remove from &apos;<span><a href="file/src/_remove.js.html#lineNumber11">@aureooms/js-cll/src/_remove.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>/!\ pointers in the extracted node are left unchanged
-/!\ y will have dangling pointers after removal if not single element</p>
+  <div data-ice="description"><p>Removes input <span><a href="function/index.html#static-function-Node">Node</a></span> from its list.</p>
+<p>/!\ Pointers in the extracted node are left unchanged.
+/!\ <code>x</code> will have dangling pointers after removal if not single element.</p>
 </div>
 
   
@@ -826,69 +1335,11 @@ Works even if x has dangling pointers x.next and x.prev.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">y</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="name" class="code" data-depth="0">x</td>
+      <td data-ice="type" class="code"><span><a href="function/index.html#static-function-Node">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-list_reset_parent">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">list_reset_parent</span><span class="code" data-ice="signature">(children: <span>*</span>)</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/list_reset_parent.js.html#lineNumber1">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import list_reset_parent from &apos;<span><a href="file/src/list_reset_parent.js.html#lineNumber1">@aureooms/js-fibonacci-heap/src/list_reset_parent.js</a></span>&apos;</code></pre></div>
-  
-  
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">children</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Node to remove.</p>
+</td>
     </tr>
 </tbody>
   </table>

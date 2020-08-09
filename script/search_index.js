@@ -1,68 +1,80 @@
 window.esdocSearchIndex = [
   [
-    "@aureooms/js-fibonacci-heap/src/fibonacciheap.js~fibonacciheap",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html",
-    "<span>FibonacciHeap</span> <span class=\"search-result-import-path\">@aureooms/js-fibonacci-heap/src/FibonacciHeap.js</span>",
-    "class"
-  ],
-  [
-    "@aureooms/js-fibonacci-heap/src/node.js~node",
-    "class/src/Node.js~Node.html",
-    "<span>Node</span> <span class=\"search-result-import-path\">@aureooms/js-fibonacci-heap/src/Node.js</span>",
-    "class"
-  ],
-  [
-    "@aureooms/js-fibonacci-heap/src/cascading_cut.js~cascading_cut",
-    "function/index.html#static-function-cascading_cut",
-    "<span>cascading_cut</span> <span class=\"search-result-import-path\">@aureooms/js-fibonacci-heap/src/cascading_cut.js</span>",
+    "@aureooms/js-cll/src/node.js~node",
+    "function/index.html#static-function-Node",
+    "<span>Node</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/Node.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-fibonacci-heap/src/consolidate.js~consolidate",
-    "function/index.html#static-function-consolidate",
-    "<span>consolidate</span> <span class=\"search-result-import-path\">@aureooms/js-fibonacci-heap/src/consolidate.js</span>",
+    "@aureooms/js-cll/src/_append.js~_append",
+    "function/index.html#static-function-_append",
+    "<span>_append</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_append.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-fibonacci-heap/src/cut.js~cut",
-    "function/index.html#static-function-cut",
-    "<span>cut</span> <span class=\"search-result-import-path\">@aureooms/js-fibonacci-heap/src/cut.js</span>",
+    "@aureooms/js-cll/src/_concat.js~_concat",
+    "function/index.html#static-function-_concat",
+    "<span>_concat</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_concat.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-fibonacci-heap/src/link.js~link",
-    "function/index.html#static-function-link",
-    "<span>link</span> <span class=\"search-result-import-path\">@aureooms/js-fibonacci-heap/src/link.js</span>",
+    "@aureooms/js-cll/src/_iter.js~_iter",
+    "function/index.html#static-function-_iter",
+    "<span>_iter</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_iter.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-fibonacci-heap/src/list_concatenate.js~list_concatenate",
-    "function/index.html#static-function-list_concatenate",
-    "<span>list_concatenate</span> <span class=\"search-result-import-path\">@aureooms/js-fibonacci-heap/src/list_concatenate.js</span>",
+    "@aureooms/js-cll/src/_remove.js~_remove",
+    "function/index.html#static-function-_remove",
+    "<span>_remove</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_remove.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-fibonacci-heap/src/list_insert.js~list_insert",
-    "function/index.html#static-function-list_insert",
-    "<span>list_insert</span> <span class=\"search-result-import-path\">@aureooms/js-fibonacci-heap/src/list_insert.js</span>",
+    "@aureooms/js-cll/src/concat.js~concat",
+    "function/index.html#static-function-concat",
+    "<span>concat</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/concat.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-fibonacci-heap/src/list_iter.js~list_iter",
-    "function/index.html#static-function-list_iter",
-    "<span>list_iter</span> <span class=\"search-result-import-path\">@aureooms/js-fibonacci-heap/src/list_iter.js</span>",
+    "@aureooms/js-cll/src/empty.js~empty",
+    "function/index.html#static-function-empty",
+    "<span>empty</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/empty.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-fibonacci-heap/src/list_remove.js~list_remove",
-    "function/index.html#static-function-list_remove",
-    "<span>list_remove</span> <span class=\"search-result-import-path\">@aureooms/js-fibonacci-heap/src/list_remove.js</span>",
+    "@aureooms/js-cll/src/from.js~from",
+    "function/index.html#static-function-from",
+    "<span>from</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/from.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-fibonacci-heap/src/list_reset_parent.js~list_reset_parent",
-    "function/index.html#static-function-list_reset_parent",
-    "<span>list_reset_parent</span> <span class=\"search-result-import-path\">@aureooms/js-fibonacci-heap/src/list_reset_parent.js</span>",
+    "@aureooms/js-cll/src/iter.js~iter",
+    "function/index.html#static-function-iter",
+    "<span>iter</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/iter.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-cll/src/pop.js~pop",
+    "function/index.html#static-function-pop",
+    "<span>pop</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/pop.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-cll/src/push.js~push",
+    "function/index.html#static-function-push",
+    "<span>push</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/push.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-cll/src/shift.js~shift",
+    "function/index.html#static-function-shift",
+    "<span>shift</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/shift.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-cll/src/unshift.js~unshift",
+    "function/index.html#static-function-unshift",
+    "<span>unshift</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/unshift.js</span>",
     "function"
   ],
   [
@@ -348,171 +360,51 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "src/fibonacciheap.js",
-    "file/src/FibonacciHeap.js.html",
-    "src/FibonacciHeap.js",
-    "file"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#compare",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-member-compare",
-    "src/FibonacciHeap.js~FibonacciHeap#compare",
-    "member"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#constructor",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-constructor-constructor",
-    "src/FibonacciHeap.js~FibonacciHeap#constructor",
-    "method"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#decreasekey",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-method-decreasekey",
-    "src/FibonacciHeap.js~FibonacciHeap#decreasekey",
-    "method"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#delete",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-method-delete",
-    "src/FibonacciHeap.js~FibonacciHeap#delete",
-    "method"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#head",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-method-head",
-    "src/FibonacciHeap.js~FibonacciHeap#head",
-    "method"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#headreference",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-method-headreference",
-    "src/FibonacciHeap.js~FibonacciHeap#headreference",
-    "method"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#increasekey",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-method-increasekey",
-    "src/FibonacciHeap.js~FibonacciHeap#increasekey",
-    "method"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#meld",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-method-meld",
-    "src/FibonacciHeap.js~FibonacciHeap#meld",
-    "method"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#merge",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-method-merge",
-    "src/FibonacciHeap.js~FibonacciHeap#merge",
-    "method"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#min",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-member-min",
-    "src/FibonacciHeap.js~FibonacciHeap#min",
-    "member"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#pop",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-method-pop",
-    "src/FibonacciHeap.js~FibonacciHeap#pop",
-    "method"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#popreference",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-method-popreference",
-    "src/FibonacciHeap.js~FibonacciHeap#popreference",
-    "method"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#push",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-method-push",
-    "src/FibonacciHeap.js~FibonacciHeap#push",
-    "method"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#pushreference",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-method-pushreference",
-    "src/FibonacciHeap.js~FibonacciHeap#pushreference",
-    "method"
-  ],
-  [
-    "src/fibonacciheap.js~fibonacciheap#update",
-    "class/src/FibonacciHeap.js~FibonacciHeap.html#instance-method-update",
-    "src/FibonacciHeap.js~FibonacciHeap#update",
-    "method"
-  ],
-  [
     "src/node.js",
     "file/src/Node.js.html",
     "src/Node.js",
     "file"
   ],
   [
-    "src/node.js~node#children",
-    "class/src/Node.js~Node.html#instance-member-children",
-    "src/Node.js~Node#children",
-    "member"
-  ],
-  [
-    "src/node.js~node#constructor",
-    "class/src/Node.js~Node.html#instance-constructor-constructor",
-    "src/Node.js~Node#constructor",
-    "method"
-  ],
-  [
-    "src/node.js~node#degree",
-    "class/src/Node.js~Node.html#instance-member-degree",
-    "src/Node.js~Node#degree",
-    "member"
-  ],
-  [
-    "src/node.js~node#mark",
-    "class/src/Node.js~Node.html#instance-member-mark",
-    "src/Node.js~Node#mark",
-    "member"
-  ],
-  [
-    "src/node.js~node#next",
-    "class/src/Node.js~Node.html#instance-member-next",
-    "src/Node.js~Node#next",
-    "member"
-  ],
-  [
-    "src/node.js~node#parent",
-    "class/src/Node.js~Node.html#instance-member-parent",
-    "src/Node.js~Node#parent",
-    "member"
-  ],
-  [
-    "src/node.js~node#prev",
-    "class/src/Node.js~Node.html#instance-member-prev",
-    "src/Node.js~Node#prev",
-    "member"
-  ],
-  [
-    "src/node.js~node#value",
-    "class/src/Node.js~Node.html#instance-member-value",
-    "src/Node.js~Node#value",
-    "member"
-  ],
-  [
-    "src/cascading_cut.js",
-    "file/src/cascading_cut.js.html",
-    "src/cascading_cut.js",
+    "src/_append.js",
+    "file/src/_append.js.html",
+    "src/_append.js",
     "file"
   ],
   [
-    "src/consolidate.js",
-    "file/src/consolidate.js.html",
-    "src/consolidate.js",
+    "src/_concat.js",
+    "file/src/_concat.js.html",
+    "src/_concat.js",
     "file"
   ],
   [
-    "src/cut.js",
-    "file/src/cut.js.html",
-    "src/cut.js",
+    "src/_iter.js",
+    "file/src/_iter.js.html",
+    "src/_iter.js",
+    "file"
+  ],
+  [
+    "src/_remove.js",
+    "file/src/_remove.js.html",
+    "src/_remove.js",
+    "file"
+  ],
+  [
+    "src/concat.js",
+    "file/src/concat.js.html",
+    "src/concat.js",
+    "file"
+  ],
+  [
+    "src/empty.js",
+    "file/src/empty.js.html",
+    "src/empty.js",
+    "file"
+  ],
+  [
+    "src/from.js",
+    "file/src/from.js.html",
+    "src/from.js",
     "file"
   ],
   [
@@ -522,39 +414,33 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/link.js",
-    "file/src/link.js.html",
-    "src/link.js",
+    "src/iter.js",
+    "file/src/iter.js.html",
+    "src/iter.js",
     "file"
   ],
   [
-    "src/list_concatenate.js",
-    "file/src/list_concatenate.js.html",
-    "src/list_concatenate.js",
+    "src/pop.js",
+    "file/src/pop.js.html",
+    "src/pop.js",
     "file"
   ],
   [
-    "src/list_insert.js",
-    "file/src/list_insert.js.html",
-    "src/list_insert.js",
+    "src/push.js",
+    "file/src/push.js.html",
+    "src/push.js",
     "file"
   ],
   [
-    "src/list_iter.js",
-    "file/src/list_iter.js.html",
-    "src/list_iter.js",
+    "src/shift.js",
+    "file/src/shift.js.html",
+    "src/shift.js",
     "file"
   ],
   [
-    "src/list_remove.js",
-    "file/src/list_remove.js.html",
-    "src/list_remove.js",
-    "file"
-  ],
-  [
-    "src/list_reset_parent.js",
-    "file/src/list_reset_parent.js.html",
-    "src/list_reset_parent.js",
+    "src/unshift.js",
+    "file/src/unshift.js.html",
+    "src/unshift.js",
     "file"
   ]
 ]

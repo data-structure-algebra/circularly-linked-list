@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl">
-  <title data-ice="title">Reference | @aureooms/js-fibonacci-heap</title>
+  <title data-ice="title">Reference | @aureooms/js-cll</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
-<link rel="stylesheet" href="./inject/css/0-style.css"><script src="./inject/script/0-header.js"></script><meta name="description" content="Fibonacci heap data structure for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@aureooms/js-fibonacci-heap"><meta property="twitter:description" content="Fibonacci heap data structure for JavaScript"></head>
+<link rel="stylesheet" href="./inject/css/0-style.css"><script src="./inject/script/0-header.js"></script><meta name="description" content="Circular Linked Lists for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@aureooms/js-cll"><meta property="twitter:description" content="Circular Linked Lists for JavaScript"></head>
 <body class="layout-container" data-ice="rootContainer">
 
 <header>
@@ -24,22 +24,24 @@
   </span>
     <ul class="search-result"></ul>
   </div>
-<a style="position:relative; top:3px;" href="https://github.com/aureooms/js-fibonacci-heap"><img width="20px" src="./image/github.png"></a></header>
+<a style="position:relative; top:3px;" href="https://github.com/aureooms/js-cll"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/FibonacciHeap.js~FibonacciHeap.html">FibonacciHeap</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Node.js~Node.html">Node</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cascading_cut">cascading_cut</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-consolidate">consolidate</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cut">cut</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-link">link</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-list_concatenate">list_concatenate</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-list_insert">list_insert</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-list_iter">list_iter</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-list_remove">list_remove</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-list_reset_parent">list_reset_parent</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Node">Node</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_append">_append</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_concat">_concat</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_iter">_iter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_remove">_remove</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-concat">concat</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-empty">empty</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-from">from</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-iter">iter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-pop">pop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-push">push</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shift">shift</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unshift">unshift</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -66,16 +68,131 @@
     <td>
       <div>
         <p>
-          <span data-ice="kind-icon" class="kind-class">C</span>
+          <span data-ice="kind-icon" class="kind-function">F</span>
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/FibonacciHeap.js~FibonacciHeap.html">FibonacciHeap</a></span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-Node">Node</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>)</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>See CLRS09 Chapter 19 on the Fibonacci Heap.</p>
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">private</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          <span data-ice="kind-icon" class="kind-function">F</span>
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_append">_append</a></span></span><span class="code" data-ice="signature">(a: <span><a href="function/index.html#static-function-Node">Node</a></span>, x: <span><a href="function/index.html#static-function-Node">Node</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Optimization of <span><a href="function/index.html#static-function-_concat">_concat</a></span> when <code>x</code> contains a single element.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">private</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          <span data-ice="kind-icon" class="kind-function">F</span>
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_concat">_concat</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>, y: <span><a href="function/index.html#static-function-Node">Node</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Concatenate two input lists.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">private</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          <span data-ice="kind-icon" class="kind-function">F</span>
+          
+          <span data-ice="generator">*</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_iter">_iter</a></span></span><span class="code" data-ice="signature">(first: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>Iterable</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Generator of nodes in list in order.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">private</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          <span data-ice="kind-icon" class="kind-function">F</span>
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_remove">_remove</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Removes input <span><a href="function/index.html#static-function-Node">Node</a></span> from its list.</p>
 </div>
       </div>
     </td>
@@ -95,16 +212,75 @@
     <td>
       <div>
         <p>
-          <span data-ice="kind-icon" class="kind-class">C</span>
+          <span data-ice="kind-icon" class="kind-function">F</span>
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/Node.js~Node.html">Node</a></span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-concat">concat</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>, y: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
+        <div data-ice="description"><p>Concatenate two input lists.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          <span data-ice="kind-icon" class="kind-function">F</span>
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-empty">empty</a></span></span><span class="code" data-ice="signature">(): <span><a href="function/index.html#static-function-Node">Node</a></span></span>
+        </p>
+      </div>
+      <div>
         
+        
+        <div data-ice="description"><p>Return an empty list.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          <span data-ice="kind-icon" class="kind-function">F</span>
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-from">from</a></span></span><span class="code" data-ice="signature">(iterable: <span>Iterable</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Creates a list from an input iterable.</p>
+</div>
       </div>
     </td>
     <td>
@@ -126,41 +302,13 @@
           <span data-ice="kind-icon" class="kind-function">F</span>
           
           <span data-ice="generator">*</span>
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-cascading_cut">cascading_cut</a></span></span><span class="code" data-ice="signature">(y: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-iter">iter</a></span></span><span class="code" data-ice="signature">(first: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>Iterable</span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          <span data-ice="kind-icon" class="kind-function">F</span>
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-consolidate">consolidate</a></span></span><span class="code" data-ice="signature">(compare: <span>*</span>, l: <span>*</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>CONSOLIDATE: Consolidate the root list of a heap.</p>
+        <div data-ice="description"><p>Generator of nodes in list in order.</p>
 </div>
       </div>
     </td>
@@ -183,41 +331,13 @@
           <span data-ice="kind-icon" class="kind-function">F</span>
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-cut">cut</a></span></span><span class="code" data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-pop">pop</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>[Node, Node]</span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          <span data-ice="kind-icon" class="kind-function">F</span>
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-link">link</a></span></span><span class="code" data-ice="signature">(y: <span>*</span>, x: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>FIB-HEAP-LINK</p>
+        <div data-ice="description"><p>Removes last <span><a href="function/index.html#static-function-Node">Node</a></span> from a list.</p>
 </div>
       </div>
     </td>
@@ -240,99 +360,13 @@
           <span data-ice="kind-icon" class="kind-function">F</span>
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-list_concatenate">list_concatenate</a></span></span><span class="code" data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-push">push</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          <span data-ice="kind-icon" class="kind-function">F</span>
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-list_insert">list_insert</a></span></span><span class="code" data-ice="signature">(a: <span>*</span>, x: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Optimization of list_concatenate when x contains a single element.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          <span data-ice="kind-icon" class="kind-function">F</span>
-          
-          <span data-ice="generator">*</span>
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-list_iter">list_iter</a></span></span><span class="code" data-ice="signature">(children: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          <span data-ice="kind-icon" class="kind-function">F</span>
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-list_remove">list_remove</a></span></span><span class="code" data-ice="signature">(y: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>/!\ pointers in the extracted node are left unchanged
-/!\ y will have dangling pointers after removal if not single element</p>
+        <div data-ice="description"><p>Push value to list.</p>
 </div>
       </div>
     </td>
@@ -355,13 +389,43 @@
           <span data-ice="kind-icon" class="kind-function">F</span>
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-list_reset_parent">list_reset_parent</a></span></span><span class="code" data-ice="signature">(children: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-shift">shift</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>): <span>[Node, Node]</span></span>
         </p>
       </div>
       <div>
         
         
+        <div data-ice="description"><p>Removes first <span><a href="function/index.html#static-function-Node">Node</a></span> from a list.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          <span data-ice="kind-icon" class="kind-function">F</span>
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-unshift">unshift</a></span></span><span class="code" data-ice="signature">(x: <span><a href="function/index.html#static-function-Node">Node</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
         
+        
+        <div data-ice="description"><p>Unshift value to list.</p>
+</div>
       </div>
     </td>
     <td>

@@ -566,169 +566,273 @@
   {
     "__docId__": 48,
     "kind": "file",
-    "name": "src/FibonacciHeap.js",
-    "content": "import Node from './Node';\n\nimport list_insert from './list_insert';\nimport list_remove from './list_remove';\nimport list_concatenate from './list_concatenate';\nimport list_reset_parent from './list_reset_parent';\n\nimport consolidate from './consolidate';\nimport cut from './cut';\nimport cascading_cut from './cascading_cut';\n\n/**\n * See CLRS09 Chapter 19 on the Fibonacci Heap.\n */\nexport default class FibonacciHeap {\n\t/**\n\t * Make-heap: creates a new empty heap.\n\t *\n\t * To make an empty Fibonacci heap, the MAKE-FIB-HEAP procedure\n\t * allocates and returns the Fibonacci heap object H, where H.n = 0 and\n\t * H.min = NIL ; there are no trees in H. Because t(H) = 0 and m(H) = 0,\n\t * the potential of the empty Fibonacci heap is pot(H) = 0. The amortized\n\t * cost of MAKE-FIB-HEAP is thus equal to its O(1) actual cost.\n\t */\n\tconstructor(compare) {\n\t\tthis.compare = compare; // Comparison function\n\t\t/**\n\t\t * We access a given Fibonacci heap H by a pointer H.min to the root of\n\t\t * a tree containing the minimum key; we call this node the minimum\n\t\t * node of the Fibonacci heap. If more than one root has a key with the\n\t\t * minimum value, then any such root may serve as the minimum node.\n\t\t * When a Fibonacci heap H is empty, H.min is NIL.\n\t\t */\n\t\tthis.min = null;\n\t}\n\n\t/**\n\t * Find-min: simply return the top element of the heap.\n\t */\n\thead() {\n\t\tif (this.min === null) return undefined;\n\t\treturn this.min.value;\n\t}\n\n\t/**\n\t * Minimum: return a pointer to the element whose key is minimum\n\t *\n\t * The minimum node of a Fibonacci heap H is given by the pointer H.min, so\n\t * we can find the minimum node in O(1) actual time. Because the potential\n\t * of H does not change, the amortized cost of this operation is equal to\n\t * its O(1) actual cost.\n\t */\n\theadreference() {\n\t\treturn this.min;\n\t}\n\n\t/**\n\t */\n\tpop() {\n\t\tconst min = this.popreference();\n\t\treturn min === null ? undefined : min.value;\n\t}\n\n\t/**\n\t * FIB-HEAP-EXTRACT-MIN(H):\n\t *\n\t * Extracting the minimum node\n\t *\n\t * The process of extracting the minimum node is the most complicated of\n\t * the operations presented in this section. It is also where the delayed\n\t * work of consolidating trees in the root list finally occurs. The\n\t * following pseudocode extracts the minimum node. The code assumes for\n\t * convenience that when a node is removed from a linked list, pointers\n\t * remaining in the list are updated, but pointers in the extracted node\n\t * are left unchanged. It also calls the auxiliary procedure CONSOLIDATE,\n\t * which we shall see shortly.\n\t */\n\tpopreference() {\n\t\tconst z = this.min;\n\t\tif (z === null) return null;\n\t\tif (z.children !== null) {\n\t\t\tlist_reset_parent(z.children);\n\t\t\tlist_concatenate(z, z.children);\n\t\t}\n\n\t\tif (z === z.next) this.min = null;\n\t\telse {\n\t\t\tlist_remove(z);\n\t\t\tthis.min = consolidate(this.compare, z.next);\n\t\t}\n\n\t\tz.next = z; // (Re)move this?\n\t\tz.prev = z;\n\t\tz.children = null;\n\t\tz.degree = 0;\n\t\tz.mark = false;\n\t\treturn z;\n\t}\n\n\t/**\n\t * Create a new node for the inserted element and put it into the heap.\n\t */\n\tpush(value) {\n\t\tconst node = new Node(value);\n\t\treturn this.pushreference(node);\n\t}\n\n\t/**\n\t * Insert: insert new node.\n\t * /!\\ ref.next = ref.prev = ref which means all references that are\n\t * external to the tree must reset .next and .prev and one must not call\n\t * FibonacciHeap#pushreference with an internal reference from this tree or\n\t * another, except the root of another tree.\n\t *\n\t * Change in potential is 1. Therefore amortized cost is O(1).\n\t */\n\tpushreference(ref) {\n\t\tif (this.min === null) {\n\t\t\t// Create a root list for H containing just x (by precondition)\n\t\t\tthis.min = ref;\n\t\t} else {\n\t\t\t// This.min != null != ref\n\t\t\t// Insert x into H's root list\n\t\t\tlist_insert(this.min, ref);\n\t\t\t// Update minimum\n\t\t\tif (this.compare(ref.value, this.min.value) < 0) {\n\t\t\t\tthis.min = ref;\n\t\t\t}\n\t\t}\n\n\t\treturn ref;\n\t}\n\n\t/**\n\t * Union: Uniting two Fibonacci heaps\n\t *\n\t * The following procedure unites Fibonacci heaps H_1 and H_2, destroying\n\t * H_1 and H_2 in the process. It simply concatenates the root lists of H_1\n\t * and H_2 and then determines the new minimum node. Afterward, the objects\n\t * representing H_1 and H_2 will never be used again.\n\t *\n\t * /!\\ Assumes the same comparison function is used in both trees.\n\t *\n\t * Change in potential is zero. Amortized cost is O(1), the actual cost.\n\t */\n\tmeld(other) {\n\t\tconst ref = other.min;\n\t\tif (ref === null) return;\n\t\tif (this.min === null) this.min = ref;\n\t\telse {\n\t\t\t// This.min != null != ref\n\t\t\t// Concatenate the root list of H_2 with the root list of H\n\t\t\tlist_concatenate(this.min, ref);\n\t\t\t// Update minimum\n\t\t\tif (this.compare(ref.value, this.min.value) < 0) {\n\t\t\t\tthis.min = ref;\n\t\t\t}\n\t\t}\n\t}\n\n\t/**\n\t * Synonym for FibonacciHeap#meld.\n\t * TODO Remove this.\n\t */\n\tmerge(other) {\n\t\tthis.meld(other);\n\t}\n\n\t/**\n\t * @param {Node} ref Non-null internal node object.\n\t * @param {Object} value The new value for ref.\n\t */\n\tupdate(ref, value) {\n\t\tconst d = this.compare(value, ref.value);\n\n\t\tif (d < 0) this.decreasekey(ref, value);\n\t\telse if (d > 0) this.increasekey(ref, value);\n\t\telse ref.value = value;\n\t}\n\n\t/**\n\t * FIB-HEAP-DECREASE-kEY:\n\t * @param {Node} ref Non-null internal node object.\n\t * @param {Object} value The new value for ref.\n\t */\n\tdecreasekey(ref, value) {\n\t\tref.value = value;\n\t\tif (ref !== this.min) {\n\t\t\t// This.min != null, ref != null\n\t\t\tconst y = ref.parent;\n\t\t\tif (y !== null && this.compare(ref.value, y.value) < 0) {\n\t\t\t\tcut(ref, y);\n\t\t\t\tlist_insert(this.min, ref);\n\t\t\t\tfor (const x of cascading_cut(y)) list_insert(this.min, x);\n\t\t\t}\n\n\t\t\tif (this.compare(ref.value, this.min.value) < 0) {\n\t\t\t\tthis.min = ref;\n\t\t\t}\n\t\t}\n\t}\n\n\t/**\n\t * Increase-key: remove the item at the key to be increased, replace\n\t * the key with a larger key, then push the result back into the heap.\n\t *\n\t * @param {Node} ref Non-null internal node object.\n\t * @param {Object} value The new value for ref.\n\t *\n\t */\n\tincreasekey(ref, value) {\n\t\tthis.delete(ref);\n\n\t\tref.value = value;\n\n\t\tthis.pushreference(ref);\n\t}\n\n\t/**\n\t * Delete\n\t * ref must be internal\n\t * ref.prev and ref.next get reset to null\n\t */\n\tdelete(ref) {\n\t\tif (ref !== this.min) {\n\t\t\t// This.min != null, ref != null\n\t\t\tconst y = ref.parent;\n\t\t\tif (y !== null) {\n\t\t\t\tcut(ref, y);\n\t\t\t\tlist_insert(this.min, ref);\n\t\t\t\tfor (const x of cascading_cut(y)) list_insert(this.min, x);\n\t\t\t}\n\n\t\t\tthis.min = ref;\n\t\t}\n\n\t\tthis.popreference();\n\t}\n}\n",
+    "name": "src/Node.js",
+    "content": "export default function Node(value) {\n\tthis.value = value; // Key\n\tthis.prev = this; // Pointer to previous (left) sibling\n\tthis.next = this; // Pointer to next (right) sibling\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/src/FibonacciHeap.js",
+    "longname": "/home/aureooms/dev/js/js-cll/src/Node.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
     "__docId__": 49,
-    "kind": "class",
-    "name": "FibonacciHeap",
-    "memberof": "src/FibonacciHeap.js",
+    "kind": "function",
+    "name": "Node",
+    "memberof": "src/Node.js",
+    "generator": false,
+    "async": false,
     "static": true,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap",
+    "longname": "src/Node.js~Node",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-fibonacci-heap/src/FibonacciHeap.js",
-    "importStyle": "FibonacciHeap",
-    "description": "See CLRS09 Chapter 19 on the Fibonacci Heap.",
-    "lineNumber": 15,
-    "interface": false
-  },
-  {
-    "__docId__": 50,
-    "kind": "constructor",
-    "name": "constructor",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#constructor",
-    "access": "public",
-    "description": "Make-heap: creates a new empty heap.\n\nTo make an empty Fibonacci heap, the MAKE-FIB-HEAP procedure\nallocates and returns the Fibonacci heap object H, where H.n = 0 and\nH.min = NIL ; there are no trees in H. Because t(H) = 0 and m(H) = 0,\nthe potential of the empty Fibonacci heap is pot(H) = 0. The amortized\ncost of MAKE-FIB-HEAP is thus equal to its O(1) actual cost.",
-    "lineNumber": 25
-  },
-  {
-    "__docId__": 51,
-    "kind": "member",
-    "name": "compare",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#compare",
-    "access": "public",
+    "importPath": "@aureooms/js-cll/src/Node.js",
+    "importStyle": "Node",
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 1,
     "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 52,
-    "kind": "member",
-    "name": "min",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#min",
-    "access": "public",
-    "description": "We access a given Fibonacci heap H by a pointer H.min to the root of\na tree containing the minimum key; we call this node the minimum\nnode of the Fibonacci heap. If more than one root has a key with the\nminimum value, then any such root may serve as the minimum node.\nWhen a Fibonacci heap H is empty, H.min is NIL.",
-    "lineNumber": 34,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 53,
-    "kind": "method",
-    "name": "head",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#head",
-    "access": "public",
-    "description": "Find-min: simply return the top element of the heap.",
-    "lineNumber": 40,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 54,
-    "kind": "method",
-    "name": "headreference",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#headreference",
-    "access": "public",
-    "description": "Minimum: return a pointer to the element whose key is minimum\n\nThe minimum node of a Fibonacci heap H is given by the pointer H.min, so\nwe can find the minimum node in O(1) actual time. Because the potential\nof H does not change, the amortized cost of this operation is equal to\nits O(1) actual cost.",
-    "lineNumber": 53,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 55,
-    "kind": "method",
-    "name": "pop",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#pop",
-    "access": "public",
-    "description": "",
-    "lineNumber": 59,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 56,
-    "kind": "method",
-    "name": "popreference",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#popreference",
-    "access": "public",
-    "description": "FIB-HEAP-EXTRACT-MIN(H):\n\nExtracting the minimum node\n\nThe process of extracting the minimum node is the most complicated of\nthe operations presented in this section. It is also where the delayed\nwork of consolidating trees in the root list finally occurs. The\nfollowing pseudocode extracts the minimum node. The code assumes for\nconvenience that when a node is removed from a linked list, pointers\nremaining in the list are updated, but pointers in the extracted node\nare left unchanged. It also calls the auxiliary procedure CONSOLIDATE,\nwhich we shall see shortly.",
-    "lineNumber": 78,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 59,
-    "kind": "method",
-    "name": "push",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#push",
-    "access": "public",
-    "description": "Create a new node for the inserted element and put it into the heap.",
-    "lineNumber": 103,
     "params": [
       {
         "name": "value",
         "types": [
           "*"
         ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 50,
+    "kind": "file",
+    "name": "src/_append.js",
+    "content": "import assert from 'assert';\n\n/**\n * Optimization of {@link _concat} when <code>x</code> contains a single element.\n * Works even if <code>x</code> has dangling pointers <code>x.next</code> and <code>x.prev</code>.\n *\n * @param {Node} a - First node of list.\n * @param {Node} x - Node to be inserted at the end of list.\n */\nexport default function _append(a, x) {\n\tassert(a !== null && x !== null);\n\tassert(x.next === x && x.prev === x);\n\t// FROM a - b - c - d - a        x\n\t//   TO a - b - c - d - x - a\n\tconst d = a.prev;\n\tx.next = a; // X -> a\n\tx.prev = d; // D <- x\n\td.next = x; // D -> x\n\ta.prev = x; // X <- a\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-cll/src/_append.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 51,
+    "kind": "function",
+    "name": "_append",
+    "memberof": "src/_append.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/_append.js~_append",
+    "access": "private",
+    "export": true,
+    "importPath": "@aureooms/js-cll/src/_append.js",
+    "importStyle": "_append",
+    "description": "Optimization of {@link _concat} when <code>x</code> contains a single element.\nWorks even if <code>x</code> has dangling pointers <code>x.next</code> and <code>x.prev</code>.",
+    "lineNumber": 10,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Node"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "a",
+        "description": "First node of list."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Node"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": "Node to be inserted at the end of list."
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 52,
+    "kind": "file",
+    "name": "src/_concat.js",
+    "content": "import assert from 'assert';\n\n/**\n * Concatenate two input lists.\n *\n * @param {Node} x - First node of first input list.\n * @param {Node} y - First node of second input list.\n */\nexport default function _concat(x, y) {\n\tassert(x !== null && y !== null);\n\t// FROM x - b - c - d - x        y - f - g - h - y\n\t//   TO x - b - c - d - y - f - g - h - x\n\tconst d = x.prev;\n\tconst h = y.prev;\n\td.next = y; // D -> y\n\tx.prev = h; // H <- x\n\ty.prev = d; // D <- y\n\th.next = x; // H -> x\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-cll/src/_concat.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 53,
+    "kind": "function",
+    "name": "_concat",
+    "memberof": "src/_concat.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/_concat.js~_concat",
+    "access": "private",
+    "export": true,
+    "importPath": "@aureooms/js-cll/src/_concat.js",
+    "importStyle": "_concat",
+    "description": "Concatenate two input lists.",
+    "lineNumber": 9,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Node"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": "First node of first input list."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Node"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "First node of second input list."
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 54,
+    "kind": "file",
+    "name": "src/_iter.js",
+    "content": "import assert from 'assert';\n\n/**\n * Generator of nodes in list in order.\n *\n * @param {Node} first - First node of the list.\n * @return {Iterable}\n */\nexport default function* _iter(first) {\n\tassert(first !== null);\n\tlet next = first;\n\n\tdo {\n\t\tconst x = next;\n\t\tnext = x.next; // Compute next before yielding.\n\t\tyield x; // Necessary ?\n\t} while (next !== first);\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-cll/src/_iter.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 55,
+    "kind": "function",
+    "name": "_iter",
+    "memberof": "src/_iter.js",
+    "generator": true,
+    "async": false,
+    "static": true,
+    "longname": "src/_iter.js~_iter",
+    "access": "private",
+    "export": true,
+    "importPath": "@aureooms/js-cll/src/_iter.js",
+    "importStyle": "_iter",
+    "description": "Generator of nodes in list in order.",
+    "lineNumber": 9,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Node"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "first",
+        "description": "First node of the list."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Iterable"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "file",
+    "name": "src/_remove.js",
+    "content": "import assert from 'assert';\n\n/**\n * Removes input {@link Node} from its list.\n *\n * /!\\ Pointers in the extracted node are left unchanged.\n * /!\\ <code>x</code> will have dangling pointers after removal if not single element.\n *\n * @param {Node} x - Node to remove.\n */\nexport default function _remove(x) {\n\tassert(x !== null);\n\tx.prev.next = x.next;\n\tx.next.prev = x.prev;\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-cll/src/_remove.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 57,
+    "kind": "function",
+    "name": "_remove",
+    "memberof": "src/_remove.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/_remove.js~_remove",
+    "access": "private",
+    "export": true,
+    "importPath": "@aureooms/js-cll/src/_remove.js",
+    "importStyle": "_remove",
+    "description": "Removes input {@link Node} from its list.\n\n/!\\ Pointers in the extracted node are left unchanged.\n/!\\ <code>x</code> will have dangling pointers after removal if not single element.",
+    "lineNumber": 11,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Node"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": "Node to remove."
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 58,
+    "kind": "file",
+    "name": "src/concat.js",
+    "content": "import assert from 'assert';\nimport Node from './Node';\nimport _concat from './_concat';\n\n/**\n * Concatenate two input lists.\n *\n * @param {Node} x - First node of first input list (can be null).\n * @param {Node} y - First node of second input list (can be null).\n */\nexport default function concat(x, y) {\n\tif (x === null) return y;\n\tassert(x instanceof Node);\n\tif (y === null) return x;\n\tassert(y instanceof Node);\n\t_concat(x, y);\n\treturn x;\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-cll/src/concat.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 59,
+    "kind": "function",
+    "name": "concat",
+    "memberof": "src/concat.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/concat.js~concat",
+    "access": "public",
+    "export": true,
+    "importPath": "@aureooms/js-cll/src/concat.js",
+    "importStyle": "concat",
+    "description": "Concatenate two input lists.",
+    "lineNumber": 11,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Node"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": "First node of first input list (can be null)."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Node"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "First node of second input list (can be null)."
       }
     ],
     "return": {
@@ -739,22 +843,76 @@
   },
   {
     "__docId__": 60,
-    "kind": "method",
-    "name": "pushreference",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
+    "kind": "file",
+    "name": "src/empty.js",
+    "content": "/**\n * Return an empty list.\n *\n * @return {Node} The empty list.\n */\nexport default function empty() {\n\treturn null;\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-cll/src/empty.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 61,
+    "kind": "function",
+    "name": "empty",
+    "memberof": "src/empty.js",
     "generator": false,
     "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#pushreference",
+    "static": true,
+    "longname": "src/empty.js~empty",
     "access": "public",
-    "description": "Insert: insert new node.\n/!\\ ref.next = ref.prev = ref which means all references that are\nexternal to the tree must reset .next and .prev and one must not call\nFibonacciHeap#pushreference with an internal reference from this tree or\nanother, except the root of another tree.\n\nChange in potential is 1. Therefore amortized cost is O(1).",
-    "lineNumber": 117,
+    "export": true,
+    "importPath": "@aureooms/js-cll/src/empty.js",
+    "importStyle": "empty",
+    "description": "Return an empty list.",
+    "lineNumber": 6,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Node"
+      ],
+      "spread": false,
+      "description": "The empty list."
+    },
+    "params": []
+  },
+  {
+    "__docId__": 62,
+    "kind": "file",
+    "name": "src/from.js",
+    "content": "import Node from './Node';\nimport _append from './_append';\n\n/**\n * Creates a list from an input iterable.\n *\n * @param {Iterable} iterable - The input iterable.\n */\nexport default function from(iterable) {\n\tconst it = iterable[Symbol.iterator]();\n\tconst event = it.next();\n\n\tif (event.done) return null;\n\n\tconst first = new Node(event.value);\n\n\tfor (const value of it) _append(first, new Node(value));\n\n\treturn first;\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-cll/src/from.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 63,
+    "kind": "function",
+    "name": "from",
+    "memberof": "src/from.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/from.js~from",
+    "access": "public",
+    "export": true,
+    "importPath": "@aureooms/js-cll/src/from.js",
+    "importStyle": "from",
+    "description": "Creates a list from an input iterable.",
+    "lineNumber": 9,
     "params": [
       {
-        "name": "ref",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Iterable"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "iterable",
+        "description": "The input iterable."
       }
     ],
     "return": {
@@ -764,97 +922,89 @@
     }
   },
   {
-    "__docId__": 63,
-    "kind": "method",
-    "name": "meld",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#meld",
+    "__docId__": 64,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "import Node from './Node';\nimport _append from './_append';\nimport _concat from './_concat';\nimport _iter from './_iter';\nimport _remove from './_remove';\nimport concat from './concat';\nimport empty from './empty';\nimport from from './from';\nimport iter from './iter';\nimport pop from './pop';\nimport push from './push';\nimport shift from './shift';\nimport unshift from './unshift';\n\n/* eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] */\nexport default {\n\tNode,\n\t_append,\n\t_concat,\n\t_iter,\n\t_remove,\n\tconcat,\n\tempty,\n\tfrom,\n\titer,\n\tpop,\n\tpush,\n\tshift,\n\tunshift\n};\n\nexport {\n\tNode,\n\t_append,\n\t_concat,\n\t_iter,\n\t_remove,\n\tconcat,\n\tempty,\n\tfrom,\n\titer,\n\tpop,\n\tpush,\n\tshift,\n\tunshift\n};\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-cll/src/index.js",
     "access": "public",
-    "description": "Union: Uniting two Fibonacci heaps\n\nThe following procedure unites Fibonacci heaps H_1 and H_2, destroying\nH_1 and H_2 in the process. It simply concatenates the root lists of H_1\nand H_2 and then determines the new minimum node. Afterward, the objects\nrepresenting H_1 and H_2 will never be used again.\n\n/!\\ Assumes the same comparison function is used in both trees.\n\nChange in potential is zero. Amortized cost is O(1), the actual cost.",
-    "lineNumber": 146,
-    "params": [
-      {
-        "name": "other",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 65,
+    "kind": "file",
+    "name": "src/iter.js",
+    "content": "import _iter from './_iter';\n/**\n * Generator of nodes in list in order.\n *\n * @param {Node} first - First node of the list (can be null).\n * @return {Iterable}\n */\nexport default function* iter(first) {\n\tif (first !== null) yield* _iter(first);\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-cll/src/iter.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
   },
   {
     "__docId__": 66,
-    "kind": "method",
-    "name": "merge",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
-    "generator": false,
+    "kind": "function",
+    "name": "iter",
+    "memberof": "src/iter.js",
+    "generator": true,
     "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#merge",
+    "static": true,
+    "longname": "src/iter.js~iter",
     "access": "public",
-    "description": "Synonym for FibonacciHeap#meld.\nTODO Remove this.",
-    "lineNumber": 165,
+    "export": true,
+    "importPath": "@aureooms/js-cll/src/iter.js",
+    "importStyle": "iter",
+    "description": "Generator of nodes in list in order.",
+    "lineNumber": 8,
     "params": [
       {
-        "name": "other",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Node"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "first",
+        "description": "First node of the list (can be null)."
       }
     ],
-    "return": null
+    "return": {
+      "nullable": null,
+      "types": [
+        "Iterable"
+      ],
+      "spread": false,
+      "description": ""
+    }
   },
   {
     "__docId__": 67,
-    "kind": "method",
-    "name": "update",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#update",
+    "kind": "file",
+    "name": "src/pop.js",
+    "content": "import assert from 'assert';\nimport Node from './Node';\nimport _remove from './_remove';\n\n/**\n * Removes last {@link Node} from a list.\n *\n * @param {Node} x - First node .\n * @return {[Node, Node]} New list (possibly null) and popped node.\n */\nexport default function pop(x) {\n\tif (x === null) throw new Error('input list is empty');\n\tassert(x instanceof Node);\n\tconst node = x.prev;\n\t_remove(node);\n\treturn [x === node ? null : x, node];\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-cll/src/pop.js",
     "access": "public",
-    "description": "",
-    "lineNumber": 173,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "Node"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "ref",
-        "description": "Non-null internal node object."
-      },
-      {
-        "nullable": null,
-        "types": [
-          "Object"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The new value for ref."
-      }
-    ],
-    "return": null
+    "description": null,
+    "lineNumber": 1
   },
   {
     "__docId__": 68,
-    "kind": "method",
-    "name": "decreasekey",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
+    "kind": "function",
+    "name": "pop",
+    "memberof": "src/pop.js",
     "generator": false,
     "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#decreasekey",
+    "static": true,
+    "longname": "src/pop.js~pop",
     "access": "public",
-    "description": "FIB-HEAP-DECREASE-kEY:",
-    "lineNumber": 186,
+    "export": true,
+    "importPath": "@aureooms/js-cll/src/pop.js",
+    "importStyle": "pop",
+    "description": "Removes last {@link Node} from a list.",
+    "lineNumber": 11,
     "params": [
       {
         "nullable": null,
@@ -863,34 +1013,45 @@
         ],
         "spread": false,
         "optional": false,
-        "name": "ref",
-        "description": "Non-null internal node object."
-      },
-      {
-        "nullable": null,
-        "types": [
-          "Object"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The new value for ref."
+        "name": "x",
+        "description": "First node ."
       }
     ],
-    "return": null
+    "return": {
+      "nullable": null,
+      "types": [
+        "[Node, Node]"
+      ],
+      "spread": false,
+      "description": "New list (possibly null) and popped node."
+    }
+  },
+  {
+    "__docId__": 69,
+    "kind": "file",
+    "name": "src/push.js",
+    "content": "import assert from 'assert';\nimport Node from './Node';\nimport _append from './_append';\n\n/**\n * Push value to list.\n *\n * @param {Node} x - First node of first input list (can be null).\n * @param {Object} value - Value to push.\n */\nexport default function push(x, value) {\n\tif (x === null) return new Node(value);\n\tassert(x instanceof Node);\n\tconst y = new Node(value);\n\t_append(x, y);\n\treturn x;\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-cll/src/push.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
   },
   {
     "__docId__": 70,
-    "kind": "method",
-    "name": "increasekey",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
+    "kind": "function",
+    "name": "push",
+    "memberof": "src/push.js",
     "generator": false,
     "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#increasekey",
+    "static": true,
+    "longname": "src/push.js~push",
     "access": "public",
-    "description": "Increase-key: remove the item at the key to be increased, replace\nthe key with a larger key, then push the result back into the heap.",
-    "lineNumber": 211,
+    "export": true,
+    "importPath": "@aureooms/js-cll/src/push.js",
+    "importStyle": "push",
+    "description": "Push value to list.",
+    "lineNumber": 11,
     "params": [
       {
         "nullable": null,
@@ -899,8 +1060,8 @@
         ],
         "spread": false,
         "optional": false,
-        "name": "ref",
-        "description": "Non-null internal node object."
+        "name": "x",
+        "description": "First node of first input list (can be null)."
       },
       {
         "nullable": null,
@@ -910,273 +1071,108 @@
         "spread": false,
         "optional": false,
         "name": "value",
-        "description": "The new value for ref."
+        "description": "Value to push."
       }
     ],
-    "return": null
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "__docId__": 71,
-    "kind": "method",
-    "name": "delete",
-    "memberof": "src/FibonacciHeap.js~FibonacciHeap",
+    "kind": "file",
+    "name": "src/shift.js",
+    "content": "import assert from 'assert';\nimport Node from './Node';\nimport _remove from './_remove';\n\n/**\n * Removes first {@link Node} from a list.\n *\n * @param {Node} x - First node .\n * @return {[Node, Node]} New list (possibly null) and popped node.\n */\nexport default function shift(x) {\n\tif (x === null) throw new Error('input list is empty');\n\tassert(x instanceof Node);\n\t_remove(x);\n\treturn [x === x.next ? null : x.next, x];\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-cll/src/shift.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 72,
+    "kind": "function",
+    "name": "shift",
+    "memberof": "src/shift.js",
     "generator": false,
     "async": false,
-    "static": false,
-    "longname": "src/FibonacciHeap.js~FibonacciHeap#delete",
+    "static": true,
+    "longname": "src/shift.js~shift",
     "access": "public",
-    "description": "Delete\nref must be internal\nref.prev and ref.next get reset to null",
-    "lineNumber": 224,
+    "export": true,
+    "importPath": "@aureooms/js-cll/src/shift.js",
+    "importStyle": "shift",
+    "description": "Removes first {@link Node} from a list.",
+    "lineNumber": 11,
     "params": [
       {
-        "name": "ref",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Node"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": "First node ."
       }
     ],
-    "return": null
+    "return": {
+      "nullable": null,
+      "types": [
+        "[Node, Node]"
+      ],
+      "spread": false,
+      "description": "New list (possibly null) and popped node."
+    }
   },
   {
     "__docId__": 73,
     "kind": "file",
-    "name": "src/Node.js",
-    "content": "export default class Node {\n\tconstructor(value) {\n\t\tthis.value = value; // Key\n\t\t/**\n\t\t * As Figure 19.2(b) shows, each node x contains a pointer x.p to its\n\t\t * parent and a pointer x.child to any one of its children. The\n\t\t * children of x are linked together in a circular, doubly linked list,\n\t\t * which we call the child list of x. Each child y in a child list has\n\t\t * pointers y.left and y.right that point to y’s left and right\n\t\t * siblings, respectively. If node y is an only child, then y.left =\n\t\t * y.right = y. Siblings may appear in a child list in any order.\n\t\t */\n\t\tthis.parent = null;\n\t\tthis.prev = this; // Pointer to previous (left) sibling\n\t\tthis.next = this; // Pointer to next (right) sibling\n\t\tthis.children = null; // Pointer to some child\n\t\t/**\n\t\t * Each node has two other attributes. We store the number of children\n\t\t * in the child list of node x in x.degree.\n\t\t */\n\t\tthis.degree = 0; // The number of children\n\t\t/**\n\t\t * The boolean-valued attribute x.mark indicates whether\n\t\t * node x has lost a child since the last time x was made the child of another node.\n\t\t * Newly created nodes are unmarked, and a node x becomes unmarked whenever it\n\t\t * is made the child of another node. Until we look at the DECREASE-KEY operation\n\t\t * in Section 19.3, we will just set all mark attributes to FALSE .\n\t\t */\n\t\tthis.mark = false; // Newly created nodes are unmarked\n\t}\n}\n",
+    "name": "src/unshift.js",
+    "content": "import assert from 'assert';\nimport Node from './Node';\nimport _concat from './_concat';\n\n/**\n * Unshift value to list.\n *\n * @param {Node} x - First node of first input list (can be null).\n * @param {Object} value - Value to unshift.\n */\nexport default function unshift(x, value) {\n\tif (x === null) return new Node(value);\n\tassert(x instanceof Node);\n\tconst y = new Node(value);\n\t_concat(y, x);\n\treturn y;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/src/Node.js",
+    "longname": "/home/aureooms/dev/js/js-cll/src/unshift.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
     "__docId__": 74,
-    "kind": "class",
-    "name": "Node",
-    "memberof": "src/Node.js",
-    "static": true,
-    "longname": "src/Node.js~Node",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-fibonacci-heap/src/Node.js",
-    "importStyle": "Node",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
-    "interface": false
-  },
-  {
-    "__docId__": 75,
-    "kind": "constructor",
-    "name": "constructor",
-    "memberof": "src/Node.js~Node",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/Node.js~Node#constructor",
-    "access": "public",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true
-  },
-  {
-    "__docId__": 76,
-    "kind": "member",
-    "name": "value",
-    "memberof": "src/Node.js~Node",
-    "static": false,
-    "longname": "src/Node.js~Node#value",
-    "access": "public",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 77,
-    "kind": "member",
-    "name": "parent",
-    "memberof": "src/Node.js~Node",
-    "static": false,
-    "longname": "src/Node.js~Node#parent",
-    "access": "public",
-    "description": "As Figure 19.2(b) shows, each node x contains a pointer x.p to its\nparent and a pointer x.child to any one of its children. The\nchildren of x are linked together in a circular, doubly linked list,\nwhich we call the child list of x. Each child y in a child list has\npointers y.left and y.right that point to y’s left and right\nsiblings, respectively. If node y is an only child, then y.left =\ny.right = y. Siblings may appear in a child list in any order.",
-    "lineNumber": 13,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 78,
-    "kind": "member",
-    "name": "prev",
-    "memberof": "src/Node.js~Node",
-    "static": false,
-    "longname": "src/Node.js~Node#prev",
-    "access": "public",
-    "description": null,
-    "lineNumber": 14,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 79,
-    "kind": "member",
-    "name": "next",
-    "memberof": "src/Node.js~Node",
-    "static": false,
-    "longname": "src/Node.js~Node#next",
-    "access": "public",
-    "description": null,
-    "lineNumber": 15,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 80,
-    "kind": "member",
-    "name": "children",
-    "memberof": "src/Node.js~Node",
-    "static": false,
-    "longname": "src/Node.js~Node#children",
-    "access": "public",
-    "description": null,
-    "lineNumber": 16,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 81,
-    "kind": "member",
-    "name": "degree",
-    "memberof": "src/Node.js~Node",
-    "static": false,
-    "longname": "src/Node.js~Node#degree",
-    "access": "public",
-    "description": "Each node has two other attributes. We store the number of children\nin the child list of node x in x.degree.",
-    "lineNumber": 21,
-    "type": {
-      "types": [
-        "number"
-      ]
-    }
-  },
-  {
-    "__docId__": 82,
-    "kind": "member",
-    "name": "mark",
-    "memberof": "src/Node.js~Node",
-    "static": false,
-    "longname": "src/Node.js~Node#mark",
-    "access": "public",
-    "description": "The boolean-valued attribute x.mark indicates whether\nnode x has lost a child since the last time x was made the child of another node.\nNewly created nodes are unmarked, and a node x becomes unmarked whenever it\nis made the child of another node. Until we look at the DECREASE-KEY operation\nin Section 19.3, we will just set all mark attributes to FALSE .",
-    "lineNumber": 29,
-    "type": {
-      "types": [
-        "boolean"
-      ]
-    }
-  },
-  {
-    "__docId__": 83,
-    "kind": "file",
-    "name": "src/cascading_cut.js",
-    "content": "import cut from './cut';\n\nexport default function* cascading_cut(y) {\n\twhile (true) {\n\t\tconst z = y.parent;\n\t\tif (z === null) break;\n\t\tif (!y.mark) {\n\t\t\ty.mark = true;\n\t\t\tbreak;\n\t\t}\n\n\t\tcut(y, z);\n\t\tyield y;\n\t\ty = z;\n\t}\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/src/cascading_cut.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 84,
     "kind": "function",
-    "name": "cascading_cut",
-    "memberof": "src/cascading_cut.js",
-    "generator": true,
-    "async": false,
-    "static": true,
-    "longname": "src/cascading_cut.js~cascading_cut",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-fibonacci-heap/src/cascading_cut.js",
-    "importStyle": "cascading_cut",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "y",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 85,
-    "kind": "file",
-    "name": "src/consolidate.js",
-    "content": "import list_insert from './list_insert';\nimport link from './link';\n\n/**\n * CONSOLIDATE: Consolidate the root list of a heap.\n *\n * The next step, in which we reduce the number of trees in the Fibonacci heap,\n * is consolidating the root list of H, which the call CONSOLIDATE(H)\n * accomplishes. Consolidating the root list consists of repeatedly executing\n * the following steps until every root in the root list has a distinct degree\n * value:\n *\n *   1. Find two roots x and y in the root list with the same degree. Without\n *   loss of generality, let x.key <= y.key.\n *\n *   2. Link y to x: remove y from the root list, and make y a child of x by\n *   calling the FIB-HEAP-LINK procedure. This procedure increments the\n *   attribute x:degree and clears the mark on y.\n *\n * The procedure CONSOLIDATE uses an auxiliary array A[0..D(H.n)] to\n * keep track of roots according to their degrees. If A[i] = y, then y is\n * currently a root with y.degree = i. Of course, in order to allocate the\n * array we have to know how to calculate the upper bound D(H.n) on the maximum\n * degree, but we will see how to do so in Section 19.4.\n *\n * @param compare Comparison function.\n * @param l Root list.\n */\nexport default function consolidate(compare, l) {\n\tconst A = [];\n\n\tlet next = l;\n\n\tdo {\n\t\tlet x = next;\n\t\tnext = x.next;\n\t\tlet d = x.degree;\n\n\t\tlet n = d - A.length;\n\t\tif (n >= 0) {\n\t\t\twhile (n-- > 0) A.push(null);\n\t\t\tA.push(x);\n\t\t} else {\n\t\t\twhile (A[d] !== null) {\n\t\t\t\tlet y = A[d]; // Another node with the same degree as x\n\t\t\t\tif (compare(y.value, x.value) < 0) {\n\t\t\t\t\t// CANNOT EXCHANGE VALUES BECAUSE THAT WOULD INVALIDATE\n\t\t\t\t\t// EXISTING POINTERS\n\t\t\t\t\ty = x;\n\t\t\t\t\tx = A[d];\n\t\t\t\t}\n\n\t\t\t\tlink(y, x);\n\t\t\t\tA[d] = null; // Put before link if using x.degree ?\n\t\t\t\t++d;\n\t\t\t\tif (d === A.length) {\n\t\t\t\t\tA.push(null);\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tA[d] = x;\n\t\t}\n\t} while (next !== l);\n\n\tlet min = null;\n\n\tfor (const x of A) {\n\t\tif (x === null) continue;\n\t\tif (min === null) {\n\t\t\t// Create a root list for H containing just A[i]\n\t\t\tx.next = x;\n\t\t\tx.prev = x;\n\t\t\tmin = x;\n\t\t} else {\n\t\t\t// Insert A[i] into H's root list\n\t\t\tlist_insert(min, x);\n\t\t\t// Update minimum if necessary\n\t\t\tif (compare(x.value, min.value) < 0) min = x;\n\t\t}\n\t}\n\n\treturn min;\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/src/consolidate.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 86,
-    "kind": "function",
-    "name": "consolidate",
-    "memberof": "src/consolidate.js",
+    "name": "unshift",
+    "memberof": "src/unshift.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/consolidate.js~consolidate",
+    "longname": "src/unshift.js~unshift",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-fibonacci-heap/src/consolidate.js",
-    "importStyle": "consolidate",
-    "description": "CONSOLIDATE: Consolidate the root list of a heap.\n\nThe next step, in which we reduce the number of trees in the Fibonacci heap,\nis consolidating the root list of H, which the call CONSOLIDATE(H)\naccomplishes. Consolidating the root list consists of repeatedly executing\nthe following steps until every root in the root list has a distinct degree\nvalue:\n\n  1. Find two roots x and y in the root list with the same degree. Without\n  loss of generality, let x.key <= y.key.\n\n  2. Link y to x: remove y from the root list, and make y a child of x by\n  calling the FIB-HEAP-LINK procedure. This procedure increments the\n  attribute x:degree and clears the mark on y.\n\nThe procedure CONSOLIDATE uses an auxiliary array A[0..D(H.n)] to\nkeep track of roots according to their degrees. If A[i] = y, then y is\ncurrently a root with y.degree = i. Of course, in order to allocate the\narray we have to know how to calculate the upper bound D(H.n) on the maximum\ndegree, but we will see how to do so in Section 19.4.",
-    "lineNumber": 29,
+    "importPath": "@aureooms/js-cll/src/unshift.js",
+    "importStyle": "unshift",
+    "description": "Unshift value to list.",
+    "lineNumber": 11,
     "params": [
       {
         "nullable": null,
         "types": [
-          "*"
+          "Node"
         ],
         "spread": false,
         "optional": false,
-        "name": "compare",
-        "description": "Comparison function."
+        "name": "x",
+        "description": "First node of first input list (can be null)."
       },
       {
         "nullable": null,
         "types": [
-          "*"
+          "Object"
         ],
         "spread": false,
         "optional": false,
-        "name": "l",
-        "description": "Root list."
+        "name": "value",
+        "description": "Value to unshift."
       }
     ],
     "return": {
@@ -1186,308 +1182,17 @@
     }
   },
   {
-    "__docId__": 87,
-    "kind": "file",
-    "name": "src/cut.js",
-    "content": "import list_remove from './list_remove';\n\nexport default function cut(x, y) {\n\tif (x === x.next) y.children = null;\n\telse {\n\t\ty.children = x.next;\n\t\tlist_remove(x);\n\t}\n\n\t--y.degree;\n\tx.parent = null;\n\tx.mark = false;\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/src/cut.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 88,
-    "kind": "function",
-    "name": "cut",
-    "memberof": "src/cut.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/cut.js~cut",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-fibonacci-heap/src/cut.js",
-    "importStyle": "cut",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "y",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 89,
-    "kind": "file",
-    "name": "src/index.js",
-    "content": "import Node from './Node';\nimport FibonacciHeap from './FibonacciHeap';\n\nexport default FibonacciHeap;\n\nexport {Node, FibonacciHeap};\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/src/index.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 90,
-    "kind": "file",
-    "name": "src/link.js",
-    "content": "import list_insert from './list_insert';\n\n/**\n * FIB-HEAP-LINK\n *\n * Precondition: y is in the root list of some heap.\n */\nexport default function link(y, x) {\n\t// List_remove(y); // NOT NECESSARY SINCE y IS ALWAYS FROM ROOT LIST\n\t// make y a child of x\n\tif (x.children === null) {\n\t\ty.next = y;\n\t\ty.prev = y;\n\t\tx.children = y;\n\t} else {\n\t\tlist_insert(x.children, y);\n\t}\n\n\ty.parent = x;\n\t++x.degree; // Increment x.degree\n\ty.mark = false; // Unmark y\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/src/link.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 91,
-    "kind": "function",
-    "name": "link",
-    "memberof": "src/link.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/link.js~link",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-fibonacci-heap/src/link.js",
-    "importStyle": "link",
-    "description": "FIB-HEAP-LINK\n\nPrecondition: y is in the root list of some heap.",
-    "lineNumber": 8,
-    "params": [
-      {
-        "name": "y",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 92,
-    "kind": "file",
-    "name": "src/list_concatenate.js",
-    "content": "export default function list_concatenate(x, y) {\n\t// FROM x - b - c - d - x        y - f - g - h - y\n\t//   TO x - b - c - d - y - f - g - h - x\n\tconst d = x.prev;\n\tconst h = y.prev;\n\td.next = y; // D -> y\n\tx.prev = h; // H <- x\n\ty.prev = d; // D <- y\n\th.next = x; // H -> x\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/src/list_concatenate.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 93,
-    "kind": "function",
-    "name": "list_concatenate",
-    "memberof": "src/list_concatenate.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/list_concatenate.js~list_concatenate",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-fibonacci-heap/src/list_concatenate.js",
-    "importStyle": "list_concatenate",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
-    "params": [
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "y",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 94,
-    "kind": "file",
-    "name": "src/list_insert.js",
-    "content": "/**\n * Optimization of list_concatenate when x contains a single element.\n * Works even if x has dangling pointers x.next and x.prev.\n */\nexport default function list_insert(a, x) {\n\t// FROM a - b - c - d - a        x\n\t//   TO a - b - c - d - x - a\n\tconst d = a.prev;\n\tx.next = a; // X -> a\n\tx.prev = d; // D <- x\n\td.next = x; // D -> x\n\ta.prev = x; // X <- a\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/src/list_insert.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 95,
-    "kind": "function",
-    "name": "list_insert",
-    "memberof": "src/list_insert.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/list_insert.js~list_insert",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-fibonacci-heap/src/list_insert.js",
-    "importStyle": "list_insert",
-    "description": "Optimization of list_concatenate when x contains a single element.\nWorks even if x has dangling pointers x.next and x.prev.",
-    "lineNumber": 5,
-    "params": [
-      {
-        "name": "a",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 96,
-    "kind": "file",
-    "name": "src/list_iter.js",
-    "content": "export default function* list_iter(children) {\n\tlet next = children;\n\n\tdo {\n\t\tconst x = next;\n\t\tnext = x.next;\n\t\tyield x;\n\t} while (next !== children);\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/src/list_iter.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 97,
-    "kind": "function",
-    "name": "list_iter",
-    "memberof": "src/list_iter.js",
-    "generator": true,
-    "async": false,
-    "static": true,
-    "longname": "src/list_iter.js~list_iter",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-fibonacci-heap/src/list_iter.js",
-    "importStyle": "list_iter",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
-    "params": [
-      {
-        "name": "children",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 98,
-    "kind": "file",
-    "name": "src/list_remove.js",
-    "content": "/**\n * /!\\ pointers in the extracted node are left unchanged\n * /!\\ y will have dangling pointers after removal if not single element\n */\nexport default function list_remove(y) {\n\ty.prev.next = y.next;\n\ty.next.prev = y.prev;\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/src/list_remove.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 99,
-    "kind": "function",
-    "name": "list_remove",
-    "memberof": "src/list_remove.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/list_remove.js~list_remove",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-fibonacci-heap/src/list_remove.js",
-    "importStyle": "list_remove",
-    "description": "/!\\ pointers in the extracted node are left unchanged\n/!\\ y will have dangling pointers after removal if not single element",
-    "lineNumber": 5,
-    "params": [
-      {
-        "name": "y",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 100,
-    "kind": "file",
-    "name": "src/list_reset_parent.js",
-    "content": "export default function list_reset_parent(children) {\n\tlet next = children;\n\n\tdo {\n\t\tconst x = next;\n\t\tnext = x.next;\n\t\tx.parent = null;\n\t} while (next !== children);\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/src/list_reset_parent.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 101,
-    "kind": "function",
-    "name": "list_reset_parent",
-    "memberof": "src/list_reset_parent.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/list_reset_parent.js~list_reset_parent",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-fibonacci-heap/src/list_reset_parent.js",
-    "importStyle": "list_reset_parent",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
-    "params": [
-      {
-        "name": "children",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
     "kind": "index",
-    "content": "[@aureooms/js-fibonacci-heap](https://aureooms.github.io/js-fibonacci-heap)\n==\n\nFibonacci heap data structure for JavaScript.\nSee [docs](https://aureooms.github.io/js-fibonacci-heap/index.html).\nParent is [@aureooms/js-heap](https://github.com/aureooms/js-heap).\n\n> :warning: The code needs a ES2015+ polyfill to run (`regeneratorRuntime`),\n> for instance [@babel/polyfill](https://babeljs.io/docs/usage/polyfill).\n\n```js\nlet heap = new FibonacciHeap( compare.increasing ) ;\n```\n\n[![License](https://img.shields.io/github/license/aureooms/js-fibonacci-heap.svg)](https://raw.githubusercontent.com/aureooms/js-fibonacci-heap/master/LICENSE)\n[![Version](https://img.shields.io/npm/v/@aureooms/js-fibonacci-heap.svg)](https://www.npmjs.org/package/@aureooms/js-fibonacci-heap)\n[![Build](https://img.shields.io/travis/aureooms/js-fibonacci-heap/master.svg)](https://travis-ci.org/aureooms/js-fibonacci-heap/branches)\n[![Dependencies](https://img.shields.io/david/aureooms/js-fibonacci-heap.svg)](https://david-dm.org/aureooms/js-fibonacci-heap)\n[![Dev dependencies](https://img.shields.io/david/dev/aureooms/js-fibonacci-heap.svg)](https://david-dm.org/aureooms/js-fibonacci-heap?type=dev)\n[![GitHub issues](https://img.shields.io/github/issues/aureooms/js-fibonacci-heap.svg)](https://github.com/aureooms/js-fibonacci-heap/issues)\n[![Downloads](https://img.shields.io/npm/dm/@aureooms/js-fibonacci-heap.svg)](https://www.npmjs.org/package/@aureooms/js-fibonacci-heap)\n\n[![Code issues](https://img.shields.io/codeclimate/issues/aureooms/js-fibonacci-heap.svg)](https://codeclimate.com/github/aureooms/js-fibonacci-heap/issues)\n[![Code maintainability](https://img.shields.io/codeclimate/maintainability/aureooms/js-fibonacci-heap.svg)](https://codeclimate.com/github/aureooms/js-fibonacci-heap/trends/churn)\n[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-fibonacci-heap/master.svg)](https://codecov.io/gh/aureooms/js-fibonacci-heap)\n[![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-fibonacci-heap.svg)](https://codeclimate.com/github/aureooms/js-fibonacci-heap/trends/technical_debt)\n[![Documentation](https://aureooms.github.io/js-fibonacci-heap/badge.svg)](https://aureooms.github.io/js-fibonacci-heap/source.html)\n\n\n## References\n\n  - [Wikipedia Article on Fibonacci Heaps](https://en.wikipedia.org/wiki/Fibonacci_heap)\n  - [Introduction to Algorithms Chapter 19](https://en.wikipedia.org/wiki/Introduction_to_Algorithms)\n",
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/README.md",
+    "content": "[@aureooms/js-cll](https://aureooms.github.io/js-cll)\n==\n\nCircular Linked Lists for JavaScript.\nSee [docs](https://aureooms.github.io/js-cll/index.html).\nParent is [@aureooms/js-data-structures](https://github.com/aureooms/js-data-structures).\n\n> :warning: The code requires `regeneratorRuntime` to be defined, for instance by importing\n> [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).\n\n```js\nlet list = from( \"abc\" ) ;\n```\n\n[![License](https://img.shields.io/github/license/aureooms/js-cll.svg)](https://raw.githubusercontent.com/aureooms/js-cll/master/LICENSE)\n[![Version](https://img.shields.io/npm/v/@aureooms/js-cll.svg)](https://www.npmjs.org/package/@aureooms/js-cll)\n[![Build](https://img.shields.io/travis/aureooms/js-cll/master.svg)](https://travis-ci.org/aureooms/js-cll/branches)\n[![Dependencies](https://img.shields.io/david/aureooms/js-cll.svg)](https://david-dm.org/aureooms/js-cll)\n[![Dev dependencies](https://img.shields.io/david/dev/aureooms/js-cll.svg)](https://david-dm.org/aureooms/js-cll?type=dev)\n[![GitHub issues](https://img.shields.io/github/issues/aureooms/js-cll.svg)](https://github.com/aureooms/js-cll/issues)\n[![Downloads](https://img.shields.io/npm/dm/@aureooms/js-cll.svg)](https://www.npmjs.org/package/@aureooms/js-cll)\n\n[![Code issues](https://img.shields.io/codeclimate/issues/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/issues)\n[![Code maintainability](https://img.shields.io/codeclimate/maintainability/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/trends/churn)\n[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-cll/master.svg)](https://codecov.io/gh/aureooms/js-cll)\n[![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/trends/technical_debt)\n[![Documentation](https://aureooms.github.io/js-cll/badge.svg)](https://aureooms.github.io/js-cll/source.html)\n",
+    "longname": "/home/aureooms/dev/js/js-cll/README.md",
     "name": "./README.md",
     "static": true,
     "access": "public"
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"@aureooms/js-fibonacci-heap\",\n  \"description\": \"Fibonacci heap data structure for JavaScript\",\n  \"version\": \"0.0.1\",\n  \"author\": \"aureooms\",\n  \"ava\": {\n    \"files\": [\n      \"test/src/**/*\"\n    ],\n    \"require\": [\n      \"@babel/polyfill\",\n      \"@babel/register\"\n    ],\n    \"timeout\": \"1m\"\n  },\n  \"babel\": {\n    \"presets\": [\n      \"@babel/preset-env\"\n    ],\n    \"plugins\": [\n      \"@babel/plugin-proposal-async-generator-functions\"\n    ],\n    \"env\": {\n      \"development\": {\n        \"sourceMaps\": \"inline\"\n      }\n    }\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/aureooms/js-fibonacci-heap/issues\"\n  },\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@aureooms/js-heap-spec\": \"15.0.3\",\n    \"@babel/cli\": \"7.8.4\",\n    \"@babel/core\": \"7.9.0\",\n    \"@babel/plugin-proposal-async-generator-functions\": \"7.8.3\",\n    \"@babel/polyfill\": \"7.8.7\",\n    \"@babel/preset-env\": \"7.9.5\",\n    \"@babel/register\": \"7.9.0\",\n    \"ava\": \"3.7.1\",\n    \"coveralls\": \"3.0.11\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-inject-script-plugin\": \"1.0.0\",\n    \"esdoc-inject-style-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"np\": \"6.2.1\",\n    \"nyc\": \"15.0.1\",\n    \"xo\": \"0.29.1\"\n  },\n  \"files\": [\n    \"lib\"\n  ],\n  \"homepage\": \"https://aureooms.github.io/js-fibonacci-heap\",\n  \"keywords\": [\n    \"data\",\n    \"fibonacci\",\n    \"heap\",\n    \"structure\"\n  ],\n  \"license\": \"AGPL-3.0\",\n  \"main\": \"lib/index.js\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/aureooms/js-fibonacci-heap\"\n  },\n  \"scripts\": {\n    \"build\": \"rm -rf lib && babel src -d lib\",\n    \"cover\": \"nyc --reporter=lcov npm test\",\n    \"esdoc\": \"esdoc\",\n    \"prepare\": \"npm run build\",\n    \"release\": \"np\",\n    \"test\": \"xo && ava\"\n  },\n  \"xo\": {\n    \"prettier\": true,\n    \"ignore\": [\n      \"lib\",\n      \"doc\"\n    ],\n    \"plugins\": [\n      \"unicorn\"\n    ],\n    \"rules\": {\n      \"camelcase\": \"off\",\n      \"unicorn/filename-case\": \"off\"\n    }\n  }\n}\n",
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/package.json",
+    "content": "{\n  \"name\": \"@aureooms/js-cll\",\n  \"description\": \"Circular Linked Lists for JavaScript\",\n  \"version\": \"0.0.1\",\n  \"author\": \"aureooms\",\n  \"ava\": {\n    \"files\": [\n      \"test/src/**/*\"\n    ],\n    \"require\": [\n      \"regenerator-runtime/runtime\",\n      \"@babel/register\"\n    ],\n    \"timeout\": \"1m\",\n    \"concurrency\": 4\n  },\n  \"babel\": {\n    \"presets\": [\n      \"@babel/preset-env\"\n    ],\n    \"env\": {\n      \"test\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      },\n      \"development\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      },\n      \"production\": {\n        \"plugins\": [\n          \"babel-plugin-unassert\",\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      }\n    }\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/aureooms/js-cll/issues\"\n  },\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@aureooms/js-itertools\": \"^4.1.0\",\n    \"@babel/cli\": \"7.10.5\",\n    \"@babel/core\": \"7.11.1\",\n    \"@babel/preset-env\": \"7.11.0\",\n    \"@babel/register\": \"7.10.5\",\n    \"ava\": \"3.11.1\",\n    \"babel-plugin-transform-remove-console\": \"6.9.4\",\n    \"babel-plugin-unassert\": \"3.0.1\",\n    \"babel-preset-power-assert\": \"3.0.0\",\n    \"coveralls\": \"3.1.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-inject-script-plugin\": \"1.0.0\",\n    \"esdoc-inject-style-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"np\": \"6.3.2\",\n    \"nyc\": \"15.1.0\",\n    \"power-assert\": \"1.6.1\",\n    \"regenerator-runtime\": \"0.13.7\",\n    \"xo\": \"0.32.1\"\n  },\n  \"files\": [\n    \"lib\"\n  ],\n  \"homepage\": \"https://aureooms.github.io/js-cll\",\n  \"keywords\": [\n    \"data\",\n    \"circular\",\n    \"doubly\",\n    \"linked\",\n    \"list\",\n    \"structure\"\n  ],\n  \"license\": \"AGPL-3.0\",\n  \"main\": \"lib/index.js\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/aureooms/js-cll\"\n  },\n  \"scripts\": {\n    \"build\": \"babel --delete-dir-on-start --env-name production src -d lib\",\n    \"cover\": \"nyc --reporter=lcov npm test\",\n    \"esdoc\": \"esdoc\",\n    \"prepare\": \"npm run build\",\n    \"release\": \"np\",\n    \"test\": \"xo && ava\"\n  },\n  \"xo\": {\n    \"prettier\": true,\n    \"ignore\": [\n      \"lib\",\n      \"doc\"\n    ],\n    \"plugins\": [\n      \"unicorn\"\n    ],\n    \"rules\": {\n      \"camelcase\": \"off\",\n      \"unicorn/filename-case\": \"off\"\n    }\n  },\n  \"sideEffects\": false\n}\n",
+    "longname": "/home/aureooms/dev/js/js-cll/package.json",
     "name": "package.json",
     "static": true,
     "access": "public"
@@ -1502,7 +1207,7 @@
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/doc/manual/overview.md",
+    "longname": "/home/aureooms/dev/js/js-cll/doc/manual/overview.md",
     "name": "./doc/manual/overview.md",
     "content": "# Overview\n",
     "static": true,
@@ -1510,33 +1215,25 @@
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/doc/manual/installation.md",
+    "longname": "/home/aureooms/dev/js/js-cll/doc/manual/installation.md",
     "name": "./doc/manual/installation.md",
-    "content": "# Installation\n\nCan be managed using\n[yarn](https://yarnpkg.com/en/docs),\n[npm](https://docs.npmjs.com),\nor [jspm](https://jspm.org/docs).\n\n\n### yarn\n```terminal\nyarn add @aureooms/js-fibonacci-heap\n```\n\n### npm\n```terminal\nnpm install @aureooms/js-fibonacci-heap --save\n```\n\n### jspm\n```terminal\njspm install npm:@aureooms/js-fibonacci-heap\n```\n",
+    "content": "# Installation\n\nCan be managed using\n[yarn](https://yarnpkg.com/en/docs),\n[npm](https://docs.npmjs.com),\nor [jspm](https://jspm.org/docs).\n\n\n### yarn\n```terminal\nyarn add @aureooms/js-cll\n```\n\n### npm\n```terminal\nnpm install @aureooms/js-cll --save\n```\n\n### jspm\n```terminal\njspm install npm:@aureooms/js-cll\n```\n",
     "static": true,
     "access": "public"
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/doc/manual/usage.md",
+    "longname": "/home/aureooms/dev/js/js-cll/doc/manual/usage.md",
     "name": "./doc/manual/usage.md",
-    "content": "# Usage\n\n> :warning: The code needs a ES2015+ polyfill to run (`regeneratorRuntime`),\n> for instance [@babel/polyfill](https://babeljs.io/docs/usage/polyfill).\n\nFirst, require the polyfill at the entry point of your application\n```js\nrequire( '@babel/polyfill' ) ;\n// or\nimport '@babel/polyfill' ;\n```\n\nThen, import the library where needed\n```js\nconst fibonacciheap = require( '@aureooms/js-fibonacci-heap' ) ;\n// or\nimport * as fibonacciheap from '@aureooms/js-fibonacci-heap' ;\n```\n",
+    "content": "# Usage\n\n> :warning: The code requires `regeneratorRuntime` to be defined, for instance by importing\n> [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).\n\nFirst, require the polyfill at the entry point of your application\n```js\nrequire( 'regenerator-runtime/runtime' );\n// or\nimport 'regenerator-runtime/runtime.js' ;\n```\n\nThen, import the library where needed\n```js\nconst cll = require( '@aureooms/js-cll' ) ;\n// or\nimport cll from '@aureooms/js-cll' ;\n```\n",
     "static": true,
     "access": "public"
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/doc/manual/example.md",
+    "longname": "/home/aureooms/dev/js/js-cll/doc/manual/example.md",
     "name": "./doc/manual/example.md",
-    "content": "# Examples\n\n> More examples in [the test files](https://github.com/aureooms/js-fibonacci-heap/tree/master/test/src).\n",
-    "static": true,
-    "access": "public"
-  },
-  {
-    "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-fibonacci-heap/doc/manual/theory.md",
-    "name": "./doc/manual/theory.md",
-    "content": "# Theory\n\nThe Fibonacci heap guarantees that decrease-key operations can be executed in\namortized constant time.\n\n> The Fibonacci heap is of interest only if the user needs the decrease-key\n> operation heavily. Use another data structure with better constants otherwise.\n\nRecall that for any sequence of operations, the sum of the real costs of the\noperations is upper bounded by the sum of the amortized costs of the\noperations (as long as our potential stays non-negative).\n\n## Idea\n\nA Fibonacci heap is a collection of Fibonacci trees. The minimum key is held by\nthe root of one of these trees. We implement this collection of trees as a\ncircular list of pointers to root nodes called the *root list*. We access this\nlist via a pointer to the root holding the smallest key. Maintaining this\npointer allows easy access to the minimum key held in the heap.\nCertain nodes of the Fibonacci trees will be marked for a purpose explained\nlater.\n\nWe amortize the cost of each operation on a heap `H` with `n` elements\nusing the following potential `P(H) = R(H) + 2 M(H)` where `R(H)` is the size\nof the root list of `H` and `M(H)` is the number of marked nodes of `H`.\n\nLet `D(H)` denote the maximum degree of a node in `H`, then the real cost,\npotential change, and amortized cost of the heap operations are respectively:\n\n  - [MAKE-HEAP](#make-heap): `O(1)`, `0`, `O(1)`.\n  - [INSERT](#insert): `O(1)`, `1`, `O(1)`.\n  - [MELD](#meld): `O(1)`, `0`, `O(1)`\n  - [DECREASE-KEY](#decrease-key): `O(c)`, `2-c`, `O(1)`\n  - [DELETE-MIN](#delete-min): `O(R(H) + D(H))`, `O(1)-R(H)` ,`O(D(H))`\n\nWhere `c` in DECREASE-KEY can be has large as the height of the tallest tree in\nour collection.\n\nTo obtain a good bound on the amortized cost of the DELETE-MIN\noperation we make sure each subtree of a node `x` has `size(x) >=\nphi^degree(x)` (`phi` is the golden ratio `1.618...`) so that `D(H) = O(log\nn)`.\n\n### How to keep the degrees low\n\nWhenever the decision is made to add a node to a parent as a child (link),\nwe guarantee that the child's degree is equal to the parent's degree.\n\nIf this child is the ith node to be added to the parent, its degree is\ntherefore i-1.\n\nWhenever a child is removed from a parent (cut), one of two things happens:\n\n  1. If the parent is marked, we cut it.\n  2. If the parent is not marked, we mark it.\n\nThis guarantees that the degree of the ith child of a parent is at least i - 2.\n\nIt can then be proven that the size of any node x of degree k is\n`size(x) >= F_{k+2} >= phi^k` where `F_i` is the ith Fibonacci number.\n\n> Hint: `F_{k+2} = 1 + F_0 + F_1 + ... + F_k`.\n\n#### Problems (with solutions)\n\nWe may have to cut repeatedly if a chain of ancestors is marked when we cut a\nnode. We can amortize this cost because each cut ancestors can be unmarked.\nHence the number of marked nodes drops proportionally to the number of cut\nnodes.\n\nThe number of root nodes may grow arbitrarily large through INSERT, MERGE, and\nDECREASE-KEY operations. This will increase the real cost of the next\nDELETE-MIN operation but also the potential of the heap.\nThe DELETE-MIN operation will therefore include a\nrestructuring procedure leveraging this high potential to amortize its high\ncost.\n\n## Heap Operations\n\nThis section details the implementation of standard heap operations in the\nFibonacci heap.\n\n### MAKE-HEAP\n\nInitialize an empty heap. Real cost is O(1) and initial potential is zero.\nAmortized cost is therefore O(1).\n\n### INSERT\n\nAdd new node as a root node. Update minimum with a single comparison.\nThe real cost of this operation is constant. The change of potential is one.\nThe amortized cost of this operation is therefore O(1).\n\n### MELD\n\nConcatenate heaps root lists in constant time. Update minimum with a single\ncomparison. The real cost of this operation is constant and the change of\npotential is zero. Amortized cost is therefore O(1).\n\nNB: Insert is meld where one of the heaps contains a single node.\n\n### DECREASE-KEY\n\nWe can update our structure after decreasing the key of a node as follows:\n\n  1. If the node is already the minimum, there is nothing to do.\n  2. Otherwise, if the node is not a root node and has now a smaller key than\n     its parent, cut it and add it to the root list.\n  3. Finally, update the minimum of the root list if necessary.\n\nNote that in 2. we have to recursively cut ancestor nodes until an unmarked\nancestor is reached to guarantee the small degree property of the nodes.\nFortunately, as already noted, we can amortize this cost because each cut\nancestors can be unmarked. Hence the number of marked nodes drops\nproportionally to the number of cut nodes. The exact computation gives, for `c`\ncut nodes, a real cost of `O(c)`, a change of potential of `2-c`, and an\namortized cost of `O(1)`.\n\n### DELETE-MIN\n\nMinimum node is a root node. We can add all children of the deleted node as\nroot nodes. This increases the number of root nodes by the degree of the\ndeleted node. Since the degree of a node is at most `D(H)`, the number of root nodes\nincreases by at most `D(H)`.\n\nThe minimum needs to be updated. This could be any of the root nodes after\ndeletion. Updating the minimum will therefore cost something proportional to\nthe number of root nodes after the addition of the children of the deleted\nnode, that is `R(H) + D(H)`.\n\nTo amortize this costly operation, we need to reduce the number of nodes in the\nroot list. We do so by making sure there is at most one node of each degree in\nthe root list. We call this procedure CONSOLIDATE. Once that procedure is\nfinished, there are at most `D(H) + 1` nodes left in the root list. The real\ncost of the procedure is proportional to `R(H) + D(H)` (see [below](#consolidate)),\nthe same as updating the minimum.\n\n> There are at most `D(H) + 1` left in the root list after this procedure is\n> run because the list contains at most one node of each degree:\n> one node of degree `0`, one node of degree `1`, ..., and one node of degree\n> `D(H)`.\n\nTo sum up, the real cost of DELETE-MIN is `O(R(H)+D(H))`, the change of\npotential is at most `O(1) - R(H)`, and the amortized cost is therefore\n`O(D(H))`.\n\n#### CONSOLIDATE\n\nThis procedure evokes the construction of binomial trees: given a list of\ntrees, repeatedly merge trees whose roots have identical degree until no two\ntrees have identical degrees. For further reference let `N` be the size of the\nlist of trees to merge and let `N'` be the number of trees left after the\nprocedure.\n\nMerging two trees corresponds to making one tree the child of the other. When a\ntree is made the child of another it is removed from the merge list.\n\nHence a tree can be made the child of another at most once and, when this\nhappens, the size of the merge list shrinks by one. Therefore the total number\nof merge operations is linear in `N-N'`.\n\nEach tree can be processed in constant time and hence the total cost of\nconsolidate is proportional to `N`.\n",
+    "content": "# Examples\n\n> More examples in [the test files](https://github.com/aureooms/js-cll/tree/master/test/src).\n",
     "static": true,
     "access": "public"
   }

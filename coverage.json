@@ -1,81 +1,74 @@
 {
-  "coverage": "64.7%",
-  "expectCount": 34,
-  "actualCount": 22,
+  "coverage": "92.3%",
+  "expectCount": 13,
+  "actualCount": 12,
   "files": {
-    "src/FibonacciHeap.js": {
-      "expectCount": 16,
-      "actualCount": 15,
-      "undocumentLines": [
-        26
-      ]
-    },
     "src/Node.js": {
-      "expectCount": 9,
-      "actualCount": 3,
-      "undocumentLines": [
-        1,
-        2,
-        3,
-        14,
-        15,
-        16
-      ]
-    },
-    "src/cascading_cut.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
-      ]
-    },
-    "src/consolidate.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "src/cut.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
-      ]
-    },
-    "src/link.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "src/list_concatenate.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
         1
       ]
     },
-    "src/list_insert.js": {
+    "src/_append.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/list_iter.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        1
-      ]
-    },
-    "src/list_remove.js": {
+    "src/_concat.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/list_reset_parent.js": {
+    "src/_iter.js": {
       "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        1
-      ]
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/_remove.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/concat.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/empty.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/from.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/iter.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pop.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/push.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/shift.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/unshift.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     }
   }
 }
