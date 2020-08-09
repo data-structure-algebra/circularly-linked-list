@@ -47,7 +47,12 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/Node.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export default function Node(value) {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Base node class.
+ *
+ * @param {Object} value - The value to hold.
+ */
+export default function Node(value) {
 	this.value = value; // Key
 	this.prev = this; // Pointer to previous (left) sibling
 	this.next = this; // Pointer to next (right) sibling

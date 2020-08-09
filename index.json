@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/Node.js",
-    "content": "export default function Node(value) {\n\tthis.value = value; // Key\n\tthis.prev = this; // Pointer to previous (left) sibling\n\tthis.next = this; // Pointer to next (right) sibling\n}\n",
+    "content": "/**\n * Base node class.\n *\n * @param {Object} value - The value to hold.\n */\nexport default function Node(value) {\n\tthis.value = value; // Key\n\tthis.prev = this; // Pointer to previous (left) sibling\n\tthis.next = this; // Pointer to next (right) sibling\n}\n",
     "static": true,
     "longname": "/home/aureooms/dev/js/js-cll/src/Node.js",
     "access": "public",
@@ -587,15 +587,18 @@
     "export": true,
     "importPath": "@aureooms/js-cll/src/Node.js",
     "importStyle": "Node",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "Base node class.",
+    "lineNumber": 6,
     "params": [
       {
-        "name": "value",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to hold."
       }
     ],
     "return": null
@@ -1191,7 +1194,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"@aureooms/js-cll\",\n  \"description\": \"Circular Linked Lists for JavaScript\",\n  \"version\": \"0.0.1\",\n  \"author\": \"aureooms\",\n  \"ava\": {\n    \"files\": [\n      \"test/src/**/*\"\n    ],\n    \"require\": [\n      \"regenerator-runtime/runtime\",\n      \"@babel/register\"\n    ],\n    \"timeout\": \"1m\",\n    \"concurrency\": 4\n  },\n  \"babel\": {\n    \"presets\": [\n      \"@babel/preset-env\"\n    ],\n    \"env\": {\n      \"test\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      },\n      \"development\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      },\n      \"production\": {\n        \"plugins\": [\n          \"babel-plugin-unassert\",\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      }\n    }\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/aureooms/js-cll/issues\"\n  },\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@aureooms/js-itertools\": \"^4.1.0\",\n    \"@babel/cli\": \"7.10.5\",\n    \"@babel/core\": \"7.11.1\",\n    \"@babel/preset-env\": \"7.11.0\",\n    \"@babel/register\": \"7.10.5\",\n    \"ava\": \"3.11.1\",\n    \"babel-plugin-transform-remove-console\": \"6.9.4\",\n    \"babel-plugin-unassert\": \"3.0.1\",\n    \"babel-preset-power-assert\": \"3.0.0\",\n    \"coveralls\": \"3.1.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-inject-script-plugin\": \"1.0.0\",\n    \"esdoc-inject-style-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"np\": \"6.3.2\",\n    \"nyc\": \"15.1.0\",\n    \"power-assert\": \"1.6.1\",\n    \"regenerator-runtime\": \"0.13.7\",\n    \"xo\": \"0.32.1\"\n  },\n  \"files\": [\n    \"lib\"\n  ],\n  \"homepage\": \"https://aureooms.github.io/js-cll\",\n  \"keywords\": [\n    \"data\",\n    \"circular\",\n    \"doubly\",\n    \"linked\",\n    \"list\",\n    \"structure\"\n  ],\n  \"license\": \"AGPL-3.0\",\n  \"main\": \"lib/index.js\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/aureooms/js-cll\"\n  },\n  \"scripts\": {\n    \"build\": \"babel --delete-dir-on-start --env-name production src -d lib\",\n    \"cover\": \"nyc --reporter=lcov npm test\",\n    \"esdoc\": \"esdoc\",\n    \"prepare\": \"npm run build\",\n    \"release\": \"np\",\n    \"test\": \"xo && ava\"\n  },\n  \"xo\": {\n    \"prettier\": true,\n    \"ignore\": [\n      \"lib\",\n      \"doc\"\n    ],\n    \"plugins\": [\n      \"unicorn\"\n    ],\n    \"rules\": {\n      \"camelcase\": \"off\",\n      \"unicorn/filename-case\": \"off\"\n    }\n  },\n  \"sideEffects\": false\n}\n",
+    "content": "{\n  \"name\": \"@aureooms/js-cll\",\n  \"description\": \"Circular Linked Lists for JavaScript\",\n  \"version\": \"1.0.0\",\n  \"author\": \"aureooms\",\n  \"ava\": {\n    \"files\": [\n      \"test/src/**/*\"\n    ],\n    \"require\": [\n      \"regenerator-runtime/runtime\",\n      \"@babel/register\"\n    ],\n    \"timeout\": \"1m\",\n    \"concurrency\": 4\n  },\n  \"babel\": {\n    \"presets\": [\n      \"@babel/preset-env\"\n    ],\n    \"env\": {\n      \"test\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      },\n      \"development\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      },\n      \"production\": {\n        \"plugins\": [\n          \"babel-plugin-unassert\",\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      }\n    }\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/aureooms/js-cll/issues\"\n  },\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@aureooms/js-itertools\": \"^4.1.0\",\n    \"@babel/cli\": \"7.10.5\",\n    \"@babel/core\": \"7.11.1\",\n    \"@babel/preset-env\": \"7.11.0\",\n    \"@babel/register\": \"7.10.5\",\n    \"ava\": \"3.11.1\",\n    \"babel-plugin-transform-remove-console\": \"6.9.4\",\n    \"babel-plugin-unassert\": \"3.0.1\",\n    \"babel-preset-power-assert\": \"3.0.0\",\n    \"coveralls\": \"3.1.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-inject-script-plugin\": \"1.0.0\",\n    \"esdoc-inject-style-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"np\": \"6.3.2\",\n    \"nyc\": \"15.1.0\",\n    \"power-assert\": \"1.6.1\",\n    \"regenerator-runtime\": \"0.13.7\",\n    \"xo\": \"0.32.1\"\n  },\n  \"files\": [\n    \"lib\"\n  ],\n  \"homepage\": \"https://aureooms.github.io/js-cll\",\n  \"keywords\": [\n    \"data\",\n    \"circular\",\n    \"doubly\",\n    \"linked\",\n    \"list\",\n    \"structure\"\n  ],\n  \"license\": \"AGPL-3.0\",\n  \"main\": \"lib/index.js\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/aureooms/js-cll\"\n  },\n  \"scripts\": {\n    \"build\": \"babel --delete-dir-on-start --env-name production src -d lib\",\n    \"cover\": \"nyc --reporter=lcov npm test\",\n    \"esdoc\": \"esdoc\",\n    \"prepare\": \"npm run build\",\n    \"release\": \"np\",\n    \"test\": \"xo && ava\"\n  },\n  \"xo\": {\n    \"prettier\": true,\n    \"ignore\": [\n      \"lib\",\n      \"doc\"\n    ],\n    \"plugins\": [\n      \"unicorn\"\n    ],\n    \"rules\": {\n      \"camelcase\": \"off\",\n      \"unicorn/filename-case\": \"off\"\n    }\n  },\n  \"sideEffects\": false\n}\n",
     "longname": "/home/aureooms/dev/js/js-cll/package.json",
     "name": "package.json",
     "static": true,
