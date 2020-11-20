@@ -12,9 +12,9 @@ Parent is [@aureooms/js-data-structures](https://github.com/aureooms/js-data-str
 let list = from( "abc" ) ;
 ```
 
-[![License](https://img.shields.io/github/license/aureooms/js-cll.svg)](https://raw.githubusercontent.com/aureooms/js-cll/master/LICENSE)
+[![License](https://img.shields.io/github/license/aureooms/js-cll.svg)](https://raw.githubusercontent.com/aureooms/js-cll/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/@aureooms/js-cll.svg)](https://www.npmjs.org/package/@aureooms/js-cll)
-[![Build](https://img.shields.io/travis/aureooms/js-cll/master.svg)](https://travis-ci.org/aureooms/js-cll/branches)
+[![Build](https://img.shields.io/travis/aureooms/js-cll/main.svg)](https://travis-ci.org/aureooms/js-cll/branches)
 [![Dependencies](https://img.shields.io/david/aureooms/js-cll.svg)](https://david-dm.org/aureooms/js-cll)
 [![Dev dependencies](https://img.shields.io/david/dev/aureooms/js-cll.svg)](https://david-dm.org/aureooms/js-cll?type=dev)
 [![GitHub issues](https://img.shields.io/github/issues/aureooms/js-cll.svg)](https://github.com/aureooms/js-cll/issues)
@@ -22,6 +22,6 @@ let list = from( "abc" ) ;
 
 [![Code issues](https://img.shields.io/codeclimate/issues/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/issues)
 [![Code maintainability](https://img.shields.io/codeclimate/maintainability/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/trends/churn)
-[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-cll/master.svg)](https://codecov.io/gh/aureooms/js-cll)
+[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-cll/main.svg)](https://codecov.io/gh/aureooms/js-cll)
 [![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/trends/technical_debt)
 [![Documentation](https://aureooms.github.io/js-cll/badge.svg)](https://aureooms.github.io/js-cll/source.html)
