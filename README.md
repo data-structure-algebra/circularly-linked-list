@@ -25,3 +25,4 @@ let list = from( "abc" ) ;
 [![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-cll/main.svg)](https://codecov.io/gh/aureooms/js-cll)
 [![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/trends/technical_debt)
 [![Documentation](https://aureooms.github.io/js-cll/badge.svg)](https://aureooms.github.io/js-cll/source.html)
+[![Package size](https://img.shields.io/bundlephobia/minzip/@aureooms/js-cll)](https://bundlephobia.com/result?p=@aureooms/js-cll)
