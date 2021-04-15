@@ -193,10 +193,6 @@
     "rules": {
       "camelcase": "off",
       "unicorn/filename-case": "off"
-    },
-    "ignores": [
-      "lib",
-      "doc"
-    ]
+    }
   }
 }
