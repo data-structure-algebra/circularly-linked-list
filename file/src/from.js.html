@@ -47,13 +47,14 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/from.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Node from &apos;./Node&apos;;
-import _append from &apos;./_append&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Node from &apos;./Node.js&apos;;
+import _append from &apos;./_append.js&apos;;
 
 /**
  * Creates a list from an input iterable.
  *
- * @param {Iterable} iterable - The input iterable.
+ * @param {Iterable} iterable The input iterable.
+ * @return {Node} First node of the newly created list (or null if empty list).
  */
 export default function from(iterable) {
 	const it = iterable[Symbol.iterator]();

@@ -48,15 +48,17 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/_concat.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import assert from &apos;assert&apos;;
+import Node from &apos;./Node.js&apos;;
 
 /**
  * Concatenate two input lists.
  *
- * @param {Node} x - First node of first input list.
- * @param {Node} y - First node of second input list.
+ * @param {Node} x First node of first input list.
+ * @param {Node} y First node of second input list.
  */
 export default function _concat(x, y) {
-	assert(x !== null &amp;&amp; y !== null);
+	assert(x instanceof Node);
+	assert(y instanceof Node);
 	// FROM x - b - c - d - x        y - f - g - h - y
 	//   TO x - b - c - d - y - f - g - h - x
 	const d = x.prev;

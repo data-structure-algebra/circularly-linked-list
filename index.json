@@ -567,9 +567,9 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/Node.js",
-    "content": "/**\n * Base node class.\n *\n * @param {Object} value - The value to hold.\n */\nexport default function Node(value) {\n\tthis.value = value; // Key\n\tthis.prev = this; // Pointer to previous (left) sibling\n\tthis.next = this; // Pointer to next (right) sibling\n}\n",
+    "content": "/**\n * Base node class.\n *\n * @class\n * @param {any} value The value to hold.\n */\nexport default function Node(value) {\n\t/** @member {any} The value/key held by this node. */\n\tthis.value = value;\n\t/** @member {Node} Pointer to previous (left) sibling */\n\tthis.prev = this;\n\t/** @member {Node} Pointer to next (right) sibling */\n\tthis.next = this;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/Node.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/Node.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -588,12 +588,18 @@
     "importPath": "@aureooms/js-cll/src/Node.js",
     "importStyle": "Node",
     "description": "Base node class.",
-    "lineNumber": 6,
+    "lineNumber": 7,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": ""
+      }
+    ],
     "params": [
       {
         "nullable": null,
         "types": [
-          "Object"
+          "any"
         ],
         "spread": false,
         "optional": false,
@@ -607,9 +613,9 @@
     "__docId__": 50,
     "kind": "file",
     "name": "src/_append.js",
-    "content": "import assert from 'assert';\n\n/**\n * Optimization of {@link _concat} when <code>x</code> contains a single element.\n * Works even if <code>x</code> has dangling pointers <code>x.next</code> and <code>x.prev</code>.\n *\n * @param {Node} a - First node of list.\n * @param {Node} x - Node to be inserted at the end of list.\n */\nexport default function _append(a, x) {\n\tassert(a !== null && x !== null);\n\tassert(x.next === x && x.prev === x);\n\t// FROM a - b - c - d - a        x\n\t//   TO a - b - c - d - x - a\n\tconst d = a.prev;\n\tx.next = a; // X -> a\n\tx.prev = d; // D <- x\n\td.next = x; // D -> x\n\ta.prev = x; // X <- a\n}\n",
+    "content": "import assert from 'assert';\nimport Node from './Node.js';\n\n/**\n * Optimization of {@link _concat} when <code>x</code> contains a single element.\n * Works even if <code>x</code> has dangling pointers <code>x.next</code> and <code>x.prev</code>.\n *\n * @param {Node} a First node of list.\n * @param {Node} x Node to be inserted at the end of list.\n */\nexport default function _append(a, x) {\n\tassert(a instanceof Node);\n\tassert(x instanceof Node);\n\tassert(x.next === x);\n\tassert(x.prev === x);\n\t// FROM a - b - c - d - a        x\n\t//   TO a - b - c - d - x - a\n\tconst d = a.prev;\n\tx.next = a; // X -> a\n\tx.prev = d; // D <- x\n\td.next = x; // D -> x\n\ta.prev = x; // X <- a\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/_append.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/_append.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -628,7 +634,7 @@
     "importPath": "@aureooms/js-cll/src/_append.js",
     "importStyle": "_append",
     "description": "Optimization of {@link _concat} when <code>x</code> contains a single element.\nWorks even if <code>x</code> has dangling pointers <code>x.next</code> and <code>x.prev</code>.",
-    "lineNumber": 10,
+    "lineNumber": 11,
     "params": [
       {
         "nullable": null,
@@ -657,9 +663,9 @@
     "__docId__": 52,
     "kind": "file",
     "name": "src/_concat.js",
-    "content": "import assert from 'assert';\n\n/**\n * Concatenate two input lists.\n *\n * @param {Node} x - First node of first input list.\n * @param {Node} y - First node of second input list.\n */\nexport default function _concat(x, y) {\n\tassert(x !== null && y !== null);\n\t// FROM x - b - c - d - x        y - f - g - h - y\n\t//   TO x - b - c - d - y - f - g - h - x\n\tconst d = x.prev;\n\tconst h = y.prev;\n\td.next = y; // D -> y\n\tx.prev = h; // H <- x\n\ty.prev = d; // D <- y\n\th.next = x; // H -> x\n}\n",
+    "content": "import assert from 'assert';\nimport Node from './Node.js';\n\n/**\n * Concatenate two input lists.\n *\n * @param {Node} x First node of first input list.\n * @param {Node} y First node of second input list.\n */\nexport default function _concat(x, y) {\n\tassert(x instanceof Node);\n\tassert(y instanceof Node);\n\t// FROM x - b - c - d - x        y - f - g - h - y\n\t//   TO x - b - c - d - y - f - g - h - x\n\tconst d = x.prev;\n\tconst h = y.prev;\n\td.next = y; // D -> y\n\tx.prev = h; // H <- x\n\ty.prev = d; // D <- y\n\th.next = x; // H -> x\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/_concat.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/_concat.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -678,7 +684,7 @@
     "importPath": "@aureooms/js-cll/src/_concat.js",
     "importStyle": "_concat",
     "description": "Concatenate two input lists.",
-    "lineNumber": 9,
+    "lineNumber": 10,
     "params": [
       {
         "nullable": null,
@@ -707,9 +713,9 @@
     "__docId__": 54,
     "kind": "file",
     "name": "src/_iter.js",
-    "content": "import assert from 'assert';\n\n/**\n * Generator of nodes in list in order.\n *\n * @param {Node} first - First node of the list.\n * @return {Iterable}\n */\nexport default function* _iter(first) {\n\tassert(first !== null);\n\tlet next = first;\n\n\tdo {\n\t\tconst x = next;\n\t\tnext = x.next; // Compute next before yielding.\n\t\tyield x; // Necessary ?\n\t} while (next !== first);\n}\n",
+    "content": "import assert from 'assert';\nimport Node from './Node.js';\n\n/**\n * Generator of nodes in list in order.\n *\n * TODO yield values/keys instead?\n *\n * @param {Node} first First node of the list.\n * @return {IterableIterator} Yields nodes of a list in order.\n */\nexport default function* _iter(first) {\n\tassert(first instanceof Node);\n\tlet next = first;\n\n\tdo {\n\t\tconst x = next;\n\t\tnext = x.next; // Compute next before yielding.\n\t\tyield x; // Necessary ?\n\t} while (next !== first);\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/_iter.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/_iter.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -727,8 +733,8 @@
     "export": true,
     "importPath": "@aureooms/js-cll/src/_iter.js",
     "importStyle": "_iter",
-    "description": "Generator of nodes in list in order.",
-    "lineNumber": 9,
+    "description": "Generator of nodes in list in order.\n\nTODO yield values/keys instead?",
+    "lineNumber": 12,
     "params": [
       {
         "nullable": null,
@@ -744,19 +750,19 @@
     "return": {
       "nullable": null,
       "types": [
-        "Iterable"
+        "IterableIterator"
       ],
       "spread": false,
-      "description": ""
+      "description": "Yields nodes of a list in order."
     }
   },
   {
     "__docId__": 56,
     "kind": "file",
     "name": "src/_remove.js",
-    "content": "import assert from 'assert';\n\n/**\n * Removes input {@link Node} from its list.\n *\n * /!\\ Pointers in the extracted node are left unchanged.\n * /!\\ <code>x</code> will have dangling pointers after removal if not single element.\n *\n * @param {Node} x - Node to remove.\n */\nexport default function _remove(x) {\n\tassert(x !== null);\n\tx.prev.next = x.next;\n\tx.next.prev = x.prev;\n}\n",
+    "content": "import assert from 'assert';\nimport Node from './Node.js';\n\n/**\n * Removes input {@link Node} from its list.\n *\n * /!\\ Pointers in the extracted node are left unchanged.\n * /!\\ <code>x</code> will have dangling pointers after removal if not single element.\n *\n * @param {Node} x Node to remove.\n */\nexport default function _remove(x) {\n\tassert(x instanceof Node);\n\tx.prev.next = x.next;\n\tx.next.prev = x.prev;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/_remove.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/_remove.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -775,7 +781,7 @@
     "importPath": "@aureooms/js-cll/src/_remove.js",
     "importStyle": "_remove",
     "description": "Removes input {@link Node} from its list.\n\n/!\\ Pointers in the extracted node are left unchanged.\n/!\\ <code>x</code> will have dangling pointers after removal if not single element.",
-    "lineNumber": 11,
+    "lineNumber": 12,
     "params": [
       {
         "nullable": null,
@@ -794,9 +800,9 @@
     "__docId__": 58,
     "kind": "file",
     "name": "src/concat.js",
-    "content": "import assert from 'assert';\nimport Node from './Node';\nimport _concat from './_concat';\n\n/**\n * Concatenate two input lists.\n *\n * @param {Node} x - First node of first input list (can be null).\n * @param {Node} y - First node of second input list (can be null).\n */\nexport default function concat(x, y) {\n\tif (x === null) return y;\n\tassert(x instanceof Node);\n\tif (y === null) return x;\n\tassert(y instanceof Node);\n\t_concat(x, y);\n\treturn x;\n}\n",
+    "content": "import assert from 'assert';\nimport Node from './Node.js';\nimport _concat from './_concat.js';\n\n/**\n * Concatenate two input lists.\n *\n * @param {Node} x First node of first input list (can be null).\n * @param {Node} y First node of second input list (can be null).\n * @return {Node} First node of the output list (or null if empty).\n */\nexport default function concat(x, y) {\n\tif (x === null) return y;\n\tassert(x instanceof Node);\n\tif (y === null) return x;\n\tassert(y instanceof Node);\n\t_concat(x, y);\n\treturn x;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/concat.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/concat.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -815,7 +821,7 @@
     "importPath": "@aureooms/js-cll/src/concat.js",
     "importStyle": "concat",
     "description": "Concatenate two input lists.",
-    "lineNumber": 11,
+    "lineNumber": 12,
     "params": [
       {
         "nullable": null,
@@ -839,9 +845,12 @@
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Node"
+      ],
+      "spread": false,
+      "description": "First node of the output list (or null if empty)."
     }
   },
   {
@@ -850,7 +859,7 @@
     "name": "src/empty.js",
     "content": "/**\n * Return an empty list.\n *\n * @return {Node} The empty list.\n */\nexport default function empty() {\n\treturn null;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/empty.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/empty.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -884,9 +893,9 @@
     "__docId__": 62,
     "kind": "file",
     "name": "src/from.js",
-    "content": "import Node from './Node';\nimport _append from './_append';\n\n/**\n * Creates a list from an input iterable.\n *\n * @param {Iterable} iterable - The input iterable.\n */\nexport default function from(iterable) {\n\tconst it = iterable[Symbol.iterator]();\n\tconst event = it.next();\n\n\tif (event.done) return null;\n\n\tconst first = new Node(event.value);\n\n\tfor (const value of it) _append(first, new Node(value));\n\n\treturn first;\n}\n",
+    "content": "import Node from './Node.js';\nimport _append from './_append.js';\n\n/**\n * Creates a list from an input iterable.\n *\n * @param {Iterable} iterable The input iterable.\n * @return {Node} First node of the newly created list (or null if empty list).\n */\nexport default function from(iterable) {\n\tconst it = iterable[Symbol.iterator]();\n\tconst event = it.next();\n\n\tif (event.done) return null;\n\n\tconst first = new Node(event.value);\n\n\tfor (const value of it) _append(first, new Node(value));\n\n\treturn first;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/from.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/from.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -905,7 +914,7 @@
     "importPath": "@aureooms/js-cll/src/from.js",
     "importStyle": "from",
     "description": "Creates a list from an input iterable.",
-    "lineNumber": 9,
+    "lineNumber": 10,
     "params": [
       {
         "nullable": null,
@@ -919,18 +928,21 @@
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Node"
+      ],
+      "spread": false,
+      "description": "First node of the newly created list (or null if empty list)."
     }
   },
   {
     "__docId__": 64,
     "kind": "file",
     "name": "src/index.js",
-    "content": "import Node from './Node';\nimport _append from './_append';\nimport _concat from './_concat';\nimport _iter from './_iter';\nimport _remove from './_remove';\nimport concat from './concat';\nimport empty from './empty';\nimport from from './from';\nimport iter from './iter';\nimport pop from './pop';\nimport push from './push';\nimport shift from './shift';\nimport unshift from './unshift';\n\n/* eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] */\nexport default {\n\tNode,\n\t_append,\n\t_concat,\n\t_iter,\n\t_remove,\n\tconcat,\n\tempty,\n\tfrom,\n\titer,\n\tpop,\n\tpush,\n\tshift,\n\tunshift\n};\n\nexport {\n\tNode,\n\t_append,\n\t_concat,\n\t_iter,\n\t_remove,\n\tconcat,\n\tempty,\n\tfrom,\n\titer,\n\tpop,\n\tpush,\n\tshift,\n\tunshift\n};\n",
+    "content": "export {default as Node} from './Node.js';\nexport {default as _append} from './_append.js';\nexport {default as _concat} from './_concat.js';\nexport {default as _iter} from './_iter.js';\nexport {default as _remove} from './_remove.js';\nexport {default as concat} from './concat.js';\nexport {default as empty} from './empty.js';\nexport {default as from} from './from.js';\nexport {default as iter} from './iter.js';\nexport {default as pop} from './pop.js';\nexport {default as push} from './push.js';\nexport {default as shift} from './shift.js';\nexport {default as unshift} from './unshift.js';\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/index.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -939,9 +951,9 @@
     "__docId__": 65,
     "kind": "file",
     "name": "src/iter.js",
-    "content": "import _iter from './_iter';\n/**\n * Generator of nodes in list in order.\n *\n * @param {Node} first - First node of the list (can be null).\n * @return {Iterable}\n */\nexport default function* iter(first) {\n\tif (first !== null) yield* _iter(first);\n}\n",
+    "content": "import assert from 'assert';\nimport _iter from './_iter.js';\nimport Node from './Node.js';\n\n/**\n * Generator of nodes in list in order.\n *\n * @param {Node} first First node of the list (can be null).\n * @return {IterableIterator}\n */\nexport default function* iter(first) {\n\tassert(first === null || first instanceof Node);\n\tif (first !== null) yield* _iter(first);\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/iter.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/iter.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -960,7 +972,7 @@
     "importPath": "@aureooms/js-cll/src/iter.js",
     "importStyle": "iter",
     "description": "Generator of nodes in list in order.",
-    "lineNumber": 8,
+    "lineNumber": 11,
     "params": [
       {
         "nullable": null,
@@ -976,7 +988,7 @@
     "return": {
       "nullable": null,
       "types": [
-        "Iterable"
+        "IterableIterator"
       ],
       "spread": false,
       "description": ""
@@ -986,9 +998,9 @@
     "__docId__": 67,
     "kind": "file",
     "name": "src/pop.js",
-    "content": "import assert from 'assert';\nimport Node from './Node';\nimport _remove from './_remove';\n\n/**\n * Removes last {@link Node} from a list.\n *\n * @param {Node} x - First node .\n * @return {[Node, Node]} New list (possibly null) and popped node.\n */\nexport default function pop(x) {\n\tif (x === null) throw new Error('input list is empty');\n\tassert(x instanceof Node);\n\tconst node = x.prev;\n\t_remove(node);\n\treturn [x === node ? null : x, node];\n}\n",
+    "content": "import assert from 'assert';\nimport Node from './Node.js';\nimport _remove from './_remove.js';\n\n/**\n * Removes last {@link Node} from a list. Throws if input list is empty.\n *\n * @param {Node} x First node.\n * @return {[Node, Node]} New list (possibly null) and popped node.\n */\nexport default function pop(x) {\n\tif (x === null) throw new Error('input list is empty');\n\tassert(x instanceof Node);\n\tconst node = x.prev;\n\t_remove(node);\n\treturn [x === node ? null : x, node];\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/pop.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/pop.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1006,7 +1018,7 @@
     "export": true,
     "importPath": "@aureooms/js-cll/src/pop.js",
     "importStyle": "pop",
-    "description": "Removes last {@link Node} from a list.",
+    "description": "Removes last {@link Node} from a list. Throws if input list is empty.",
     "lineNumber": 11,
     "params": [
       {
@@ -1017,7 +1029,7 @@
         "spread": false,
         "optional": false,
         "name": "x",
-        "description": "First node ."
+        "description": "First node."
       }
     ],
     "return": {
@@ -1033,9 +1045,9 @@
     "__docId__": 69,
     "kind": "file",
     "name": "src/push.js",
-    "content": "import assert from 'assert';\nimport Node from './Node';\nimport _append from './_append';\n\n/**\n * Push value to list.\n *\n * @param {Node} x - First node of first input list (can be null).\n * @param {Object} value - Value to push.\n */\nexport default function push(x, value) {\n\tif (x === null) return new Node(value);\n\tassert(x instanceof Node);\n\tconst y = new Node(value);\n\t_append(x, y);\n\treturn x;\n}\n",
+    "content": "import assert from 'assert';\nimport Node from './Node.js';\nimport _append from './_append.js';\n\n/**\n * Push value to list.\n *\n * @param {Node} x First node of first input list (can be null).\n * @param {any} value Value to push.\n * @return {Node} The node at the front of the list (new node if empty, input\n * node otherwise).\n */\nexport default function push(x, value) {\n\tif (x === null) return new Node(value);\n\tassert(x instanceof Node);\n\tconst y = new Node(value);\n\t_append(x, y);\n\treturn x;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/push.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/push.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1054,7 +1066,7 @@
     "importPath": "@aureooms/js-cll/src/push.js",
     "importStyle": "push",
     "description": "Push value to list.",
-    "lineNumber": 11,
+    "lineNumber": 13,
     "params": [
       {
         "nullable": null,
@@ -1069,7 +1081,7 @@
       {
         "nullable": null,
         "types": [
-          "Object"
+          "any"
         ],
         "spread": false,
         "optional": false,
@@ -1078,18 +1090,21 @@
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Node"
+      ],
+      "spread": false,
+      "description": "The node at the front of the list (new node if empty, input\nnode otherwise)."
     }
   },
   {
     "__docId__": 71,
     "kind": "file",
     "name": "src/shift.js",
-    "content": "import assert from 'assert';\nimport Node from './Node';\nimport _remove from './_remove';\n\n/**\n * Removes first {@link Node} from a list.\n *\n * @param {Node} x - First node .\n * @return {[Node, Node]} New list (possibly null) and popped node.\n */\nexport default function shift(x) {\n\tif (x === null) throw new Error('input list is empty');\n\tassert(x instanceof Node);\n\t_remove(x);\n\treturn [x === x.next ? null : x.next, x];\n}\n",
+    "content": "import assert from 'assert';\nimport Node from './Node.js';\nimport _remove from './_remove.js';\n\n/**\n * Removes first {@link Node} from a list. Throws if input list is empty.\n *\n * TODO I do not think we need to return the popped node since it is x.\n *      Currently this is kept so to have the same signature as {@link pop}.\n *\n * @param {Node} x First node .\n * @return {[Node, Node]} New list (possibly null) and popped node.\n */\nexport default function shift(x) {\n\tif (x === null) throw new Error('input list is empty');\n\tassert(x instanceof Node);\n\t_remove(x);\n\treturn [x === x.next ? null : x.next, x];\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/shift.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/shift.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1107,8 +1122,8 @@
     "export": true,
     "importPath": "@aureooms/js-cll/src/shift.js",
     "importStyle": "shift",
-    "description": "Removes first {@link Node} from a list.",
-    "lineNumber": 11,
+    "description": "Removes first {@link Node} from a list. Throws if input list is empty.\n\nTODO I do not think we need to return the popped node since it is x.\n     Currently this is kept so to have the same signature as {@link pop}.",
+    "lineNumber": 14,
     "params": [
       {
         "nullable": null,
@@ -1134,9 +1149,9 @@
     "__docId__": 73,
     "kind": "file",
     "name": "src/unshift.js",
-    "content": "import assert from 'assert';\nimport Node from './Node';\nimport _concat from './_concat';\n\n/**\n * Unshift value to list.\n *\n * @param {Node} x - First node of first input list (can be null).\n * @param {Object} value - Value to unshift.\n */\nexport default function unshift(x, value) {\n\tif (x === null) return new Node(value);\n\tassert(x instanceof Node);\n\tconst y = new Node(value);\n\t_concat(y, x);\n\treturn y;\n}\n",
+    "content": "import assert from 'assert';\nimport Node from './Node.js';\nimport _concat from './_concat.js';\n\n/**\n * Unshift value to list.\n *\n * @param {Node} x First node of first input list (can be null).\n * @param {Object} value Value to unshift.\n * @return {Node} The node at the front of the list (hence, the new node).\n */\nexport default function unshift(x, value) {\n\tif (x === null) return new Node(value);\n\tassert(x instanceof Node);\n\tconst y = new Node(value);\n\t_concat(y, x);\n\treturn y;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-cll/src/unshift.js",
+    "longname": "/home/runner/work/js-cll/js-cll/src/unshift.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1155,7 +1170,7 @@
     "importPath": "@aureooms/js-cll/src/unshift.js",
     "importStyle": "unshift",
     "description": "Unshift value to list.",
-    "lineNumber": 11,
+    "lineNumber": 12,
     "params": [
       {
         "nullable": null,
@@ -1179,23 +1194,26 @@
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Node"
+      ],
+      "spread": false,
+      "description": "The node at the front of the list (hence, the new node)."
     }
   },
   {
     "kind": "index",
-    "content": "[@aureooms/js-cll](https://aureooms.github.io/js-cll)\n==\n\nCircular Linked Lists for JavaScript.\nSee [docs](https://aureooms.github.io/js-cll/index.html).\nParent is [@aureooms/js-data-structures](https://github.com/aureooms/js-data-structures).\n\n> :warning: The code requires `regeneratorRuntime` to be defined, for instance by importing\n> [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).\n\n```js\nlet list = from( \"abc\" ) ;\n```\n\n[![License](https://img.shields.io/github/license/aureooms/js-cll.svg)](https://raw.githubusercontent.com/aureooms/js-cll/master/LICENSE)\n[![Version](https://img.shields.io/npm/v/@aureooms/js-cll.svg)](https://www.npmjs.org/package/@aureooms/js-cll)\n[![Build](https://img.shields.io/travis/aureooms/js-cll/master.svg)](https://travis-ci.org/aureooms/js-cll/branches)\n[![Dependencies](https://img.shields.io/david/aureooms/js-cll.svg)](https://david-dm.org/aureooms/js-cll)\n[![Dev dependencies](https://img.shields.io/david/dev/aureooms/js-cll.svg)](https://david-dm.org/aureooms/js-cll?type=dev)\n[![GitHub issues](https://img.shields.io/github/issues/aureooms/js-cll.svg)](https://github.com/aureooms/js-cll/issues)\n[![Downloads](https://img.shields.io/npm/dm/@aureooms/js-cll.svg)](https://www.npmjs.org/package/@aureooms/js-cll)\n\n[![Code issues](https://img.shields.io/codeclimate/issues/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/issues)\n[![Code maintainability](https://img.shields.io/codeclimate/maintainability/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/trends/churn)\n[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-cll/master.svg)](https://codecov.io/gh/aureooms/js-cll)\n[![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/trends/technical_debt)\n[![Documentation](https://aureooms.github.io/js-cll/badge.svg)](https://aureooms.github.io/js-cll/source.html)\n",
-    "longname": "/home/aureooms/dev/js/js-cll/README.md",
+    "content": ":repeat: [@aureooms/js-cll](https://aureooms.github.io/js-cll)\n==\n\nCircular Linked Lists for JavaScript.\nSee [docs](https://aureooms.github.io/js-cll/index.html).\nParent is [@aureooms/js-data-structures](https://github.com/aureooms/js-data-structures).\n\n> :warning: The code requires `regeneratorRuntime` to be defined, for instance by importing\n> [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).\n\n```js\nlet list = from( \"abc\" ) ;\n```\n\n[![License](https://img.shields.io/github/license/aureooms/js-cll.svg)](https://raw.githubusercontent.com/aureooms/js-cll/main/LICENSE)\n[![Version](https://img.shields.io/npm/v/@aureooms/js-cll.svg)](https://www.npmjs.org/package/@aureooms/js-cll)\n[![Tests](https://img.shields.io/github/workflow/status/aureooms/js-cll/ci:test?event=push&label=tests)](https://github.com/aureooms/js-cll/actions/workflows/ci:test.yml?query=branch:main)\n[![Dependencies](https://img.shields.io/david/aureooms/js-cll.svg)](https://david-dm.org/aureooms/js-cll)\n[![Dev dependencies](https://img.shields.io/david/dev/aureooms/js-cll.svg)](https://david-dm.org/aureooms/js-cll?type=dev)\n[![GitHub issues](https://img.shields.io/github/issues/aureooms/js-cll.svg)](https://github.com/aureooms/js-cll/issues)\n[![Downloads](https://img.shields.io/npm/dm/@aureooms/js-cll.svg)](https://www.npmjs.org/package/@aureooms/js-cll)\n\n[![Code issues](https://img.shields.io/codeclimate/issues/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/issues)\n[![Code maintainability](https://img.shields.io/codeclimate/maintainability/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/trends/churn)\n[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-cll/main.svg)](https://codecov.io/gh/aureooms/js-cll)\n[![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/trends/technical_debt)\n[![Documentation](https://aureooms.github.io/js-cll/badge.svg)](https://aureooms.github.io/js-cll/source.html)\n[![Package size](https://img.shields.io/bundlephobia/minzip/@aureooms/js-cll)](https://bundlephobia.com/result?p=@aureooms/js-cll)\n",
+    "longname": "/home/runner/work/js-cll/js-cll/README.md",
     "name": "./README.md",
     "static": true,
     "access": "public"
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"@aureooms/js-cll\",\n  \"description\": \"Circular Linked Lists for JavaScript\",\n  \"version\": \"1.0.0\",\n  \"author\": \"aureooms\",\n  \"ava\": {\n    \"files\": [\n      \"test/src/**/*\"\n    ],\n    \"require\": [\n      \"regenerator-runtime/runtime\",\n      \"@babel/register\"\n    ],\n    \"timeout\": \"1m\",\n    \"concurrency\": 4\n  },\n  \"babel\": {\n    \"presets\": [\n      \"@babel/preset-env\"\n    ],\n    \"env\": {\n      \"test\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      },\n      \"development\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      },\n      \"production\": {\n        \"plugins\": [\n          \"babel-plugin-unassert\",\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      }\n    }\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/aureooms/js-cll/issues\"\n  },\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@aureooms/js-itertools\": \"^4.1.0\",\n    \"@babel/cli\": \"7.10.5\",\n    \"@babel/core\": \"7.11.1\",\n    \"@babel/preset-env\": \"7.11.0\",\n    \"@babel/register\": \"7.10.5\",\n    \"ava\": \"3.11.1\",\n    \"babel-plugin-transform-remove-console\": \"6.9.4\",\n    \"babel-plugin-unassert\": \"3.0.1\",\n    \"babel-preset-power-assert\": \"3.0.0\",\n    \"coveralls\": \"3.1.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-inject-script-plugin\": \"1.0.0\",\n    \"esdoc-inject-style-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"np\": \"6.3.2\",\n    \"nyc\": \"15.1.0\",\n    \"power-assert\": \"1.6.1\",\n    \"regenerator-runtime\": \"0.13.7\",\n    \"xo\": \"0.32.1\"\n  },\n  \"files\": [\n    \"lib\"\n  ],\n  \"homepage\": \"https://aureooms.github.io/js-cll\",\n  \"keywords\": [\n    \"data\",\n    \"circular\",\n    \"doubly\",\n    \"linked\",\n    \"list\",\n    \"structure\"\n  ],\n  \"license\": \"AGPL-3.0\",\n  \"main\": \"lib/index.js\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/aureooms/js-cll\"\n  },\n  \"scripts\": {\n    \"build\": \"babel --delete-dir-on-start --env-name production src -d lib\",\n    \"cover\": \"nyc --reporter=lcov npm test\",\n    \"esdoc\": \"esdoc\",\n    \"prepare\": \"npm run build\",\n    \"release\": \"np\",\n    \"test\": \"xo && ava\"\n  },\n  \"xo\": {\n    \"prettier\": true,\n    \"ignore\": [\n      \"lib\",\n      \"doc\"\n    ],\n    \"plugins\": [\n      \"unicorn\"\n    ],\n    \"rules\": {\n      \"camelcase\": \"off\",\n      \"unicorn/filename-case\": \"off\"\n    }\n  },\n  \"sideEffects\": false\n}\n",
-    "longname": "/home/aureooms/dev/js/js-cll/package.json",
+    "content": "{\n  \"name\": \"@aureooms/js-cll\",\n  \"description\": \"Circular Linked Lists for JavaScript\",\n  \"version\": \"2.0.0\",\n  \"license\": \"AGPL-3.0\",\n  \"author\": \"aureooms\",\n  \"homepage\": \"https://aureooms.github.io/js-cll\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/aureooms/js-cll\"\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/aureooms/js-cll/issues\"\n  },\n  \"keywords\": [\n    \"circular\",\n    \"data\",\n    \"doubly\",\n    \"linked\",\n    \"list\",\n    \"structure\"\n  ],\n  \"sideEffects\": false,\n  \"source\": \"src/index.js\",\n  \"main\": \"dist/index.js\",\n  \"module\": \"dist/index.module.js\",\n  \"esmodule\": \"dist/index.modern.js\",\n  \"umd:main\": \"dist/index.umd.js\",\n  \"unpkg\": \"dist/index.umd.js\",\n  \"exports\": {\n    \".\": {\n      \"browser\": \"./dist/index.module.js\",\n      \"umd\": \"./dist/index.umd.js\",\n      \"require\": \"./dist/index.js\",\n      \"default\": \"./dist/index.modern.js\"\n    }\n  },\n  \"files\": [\n    \"dist\"\n  ],\n  \"scripts\": {\n    \"build\": \"NODE_ENV=production microbundle\",\n    \"build-docs\": \"esdoc\",\n    \"build-gh-pages\": \"npm run build-docs\",\n    \"ci:test\": \"npm run lint-config && npm run lint && npm run cover\",\n    \"commit-msg\": \"commitlint --edit\",\n    \"cover\": \"NODE_ENV=cover c8 --all --src src --reporter lcov --reporter text-summary --reporter text npm test\",\n    \"debug\": \"NODE_ENV=debug npm run test -- -st --fail-fast\",\n    \"dev\": \"npm run lint-config-and-fix && npm run lint-and-fix && npm run cover -- -- -st --fail-fast\",\n    \"install-hooks\": \"husky install\",\n    \"lint\": \"xo\",\n    \"lint-and-fix\": \"npm run lint -- --fix\",\n    \"lint-config\": \"fixpack --dryRun\",\n    \"lint-config-and-fix\": \"fixpack || fixpack\",\n    \"postinstall\": \"npm run install-hooks\",\n    \"postpublish\": \"pinst --enable\",\n    \"precommit\": \"lint-staged\",\n    \"prepare\": \"npm run build\",\n    \"prepublishOnly\": \"pinst --disable\",\n    \"release\": \"np --message ':hatching_chick: release: Bumping to v%s.'\",\n    \"test\": \"ava\"\n  },\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@aureooms/js-itertools\": \"5.1.0\",\n    \"@babel/core\": \"7.13.15\",\n    \"@babel/preset-env\": \"7.13.15\",\n    \"@babel/register\": \"7.13.14\",\n    \"@commitlint/cli\": \"12.1.1\",\n    \"@js-library/commitlint-config\": \"0.0.4\",\n    \"ava\": \"3.15.0\",\n    \"babel-plugin-transform-remove-console\": \"6.9.4\",\n    \"babel-plugin-unassert\": \"3.0.1\",\n    \"babel-preset-power-assert\": \"3.0.0\",\n    \"c8\": \"7.7.1\",\n    \"coveralls\": \"3.1.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-inject-script-plugin\": \"1.0.0\",\n    \"esdoc-inject-style-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"fixpack\": \"4.0.0\",\n    \"husky\": \"6.0.0\",\n    \"lint-staged\": \"10.5.4\",\n    \"microbundle\": \"0.13.0\",\n    \"np\": \"7.4.0\",\n    \"pinst\": \"2.1.6\",\n    \"power-assert\": \"1.6.1\",\n    \"regenerator-runtime\": \"0.13.7\",\n    \"xo\": \"0.38.2\"\n  },\n  \"ava\": {\n    \"files\": [\n      \"test/src/**/*\"\n    ],\n    \"require\": [\n      \"regenerator-runtime/runtime\",\n      \"@babel/register\"\n    ],\n    \"timeout\": \"1m\",\n    \"concurrency\": 4\n  },\n  \"babel\": {\n    \"sourceMaps\": true,\n    \"presets\": [\n      [\n        \"@babel/preset-env\",\n        {\n          \"targets\": \"current node\"\n        }\n      ]\n    ],\n    \"plugins\": [\n      [\n        \"transform-remove-console\",\n        {\n          \"exclude\": [\n            \"log\",\n            \"error\",\n            \"warn\"\n          ]\n        }\n      ]\n    ],\n    \"env\": {\n      \"debug\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"debug\",\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ]\n      },\n      \"test\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"cover\": {\n        \"sourceMaps\": \"both\",\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"development\": {\n        \"presets\": [\n          [\n            \"@babel/preset-env\",\n            {\n              \"targets\": [\n                \"defaults\",\n                \"maintained node versions\"\n              ]\n            }\n          ],\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"production\": {\n        \"presets\": [\n          [\n            \"@babel/preset-env\",\n            {\n              \"targets\": [\n                \"defaults\",\n                \"maintained node versions\"\n              ]\n            }\n          ]\n        ],\n        \"plugins\": [\n          \"babel-plugin-unassert\"\n        ]\n      }\n    }\n  },\n  \"lint-staged\": {\n    \"*.js\": [\n      \"npm run lint-and-fix\"\n    ],\n    \"package.json\": [\n      \"npm run lint-config-and-fix\"\n    ]\n  },\n  \"prettier\": {\n    \"trailingComma\": \"all\"\n  },\n  \"xo\": {\n    \"prettier\": true,\n    \"plugins\": [\n      \"unicorn\"\n    ],\n    \"rules\": {\n      \"camelcase\": \"off\",\n      \"unicorn/filename-case\": \"off\"\n    },\n    \"overrides\": [\n      {\n        \"files\": [\n          \"doc/**\"\n        ],\n        \"env\": \"browser\"\n      }\n    ]\n  }\n}\n",
+    "longname": "/home/runner/work/js-cll/js-cll/package.json",
     "name": "package.json",
     "static": true,
     "access": "public"
@@ -1210,7 +1228,7 @@
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-cll/doc/manual/overview.md",
+    "longname": "/home/runner/work/js-cll/js-cll/doc/manual/overview.md",
     "name": "./doc/manual/overview.md",
     "content": "# Overview\n",
     "static": true,
@@ -1218,7 +1236,7 @@
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-cll/doc/manual/installation.md",
+    "longname": "/home/runner/work/js-cll/js-cll/doc/manual/installation.md",
     "name": "./doc/manual/installation.md",
     "content": "# Installation\n\nCan be managed using\n[yarn](https://yarnpkg.com/en/docs),\n[npm](https://docs.npmjs.com),\nor [jspm](https://jspm.org/docs).\n\n\n### yarn\n```terminal\nyarn add @aureooms/js-cll\n```\n\n### npm\n```terminal\nnpm install @aureooms/js-cll --save\n```\n\n### jspm\n```terminal\njspm install npm:@aureooms/js-cll\n```\n",
     "static": true,
@@ -1226,17 +1244,17 @@
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-cll/doc/manual/usage.md",
+    "longname": "/home/runner/work/js-cll/js-cll/doc/manual/usage.md",
     "name": "./doc/manual/usage.md",
-    "content": "# Usage\n\n> :warning: The code requires `regeneratorRuntime` to be defined, for instance by importing\n> [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).\n\nFirst, require the polyfill at the entry point of your application\n```js\nrequire( 'regenerator-runtime/runtime' );\n// or\nimport 'regenerator-runtime/runtime.js' ;\n```\n\nThen, import the library where needed\n```js\nconst cll = require( '@aureooms/js-cll' ) ;\n// or\nimport cll from '@aureooms/js-cll' ;\n```\n",
+    "content": "# Usage\n\n> :warning: The code requires `regeneratorRuntime` to be defined, for instance by importing\n> [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).\n\nFirst, require the polyfill at the entry point of your application\n```js\nrequire( 'regenerator-runtime/runtime' );\n// or\nimport 'regenerator-runtime/runtime.js' ;\n```\n\nThen, import the library where needed\n```js\nconst cll = require( '@aureooms/js-cll' ) ;\n// or\nimport * as cll from '@aureooms/js-cll' ;\n```\n",
     "static": true,
     "access": "public"
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-cll/doc/manual/example.md",
+    "longname": "/home/runner/work/js-cll/js-cll/doc/manual/example.md",
     "name": "./doc/manual/example.md",
-    "content": "# Examples\n\n> More examples in [the test files](https://github.com/aureooms/js-cll/tree/master/test/src).\n",
+    "content": "# Examples\n\n> More examples in [the test files](https://github.com/aureooms/js-cll/tree/main/test/src).\n",
     "static": true,
     "access": "public"
   }

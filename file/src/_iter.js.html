@@ -48,15 +48,18 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/_iter.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import assert from &apos;assert&apos;;
+import Node from &apos;./Node.js&apos;;
 
 /**
  * Generator of nodes in list in order.
  *
- * @param {Node} first - First node of the list.
- * @return {Iterable}
+ * TODO yield values/keys instead?
+ *
+ * @param {Node} first First node of the list.
+ * @return {IterableIterator} Yields nodes of a list in order.
  */
 export default function* _iter(first) {
-	assert(first !== null);
+	assert(first instanceof Node);
 	let next = first;
 
 	do {

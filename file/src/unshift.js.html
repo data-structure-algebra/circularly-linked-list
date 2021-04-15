@@ -48,14 +48,15 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/unshift.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import assert from &apos;assert&apos;;
-import Node from &apos;./Node&apos;;
-import _concat from &apos;./_concat&apos;;
+import Node from &apos;./Node.js&apos;;
+import _concat from &apos;./_concat.js&apos;;
 
 /**
  * Unshift value to list.
  *
- * @param {Node} x - First node of first input list (can be null).
- * @param {Object} value - Value to unshift.
+ * @param {Node} x First node of first input list (can be null).
+ * @param {Object} value Value to unshift.
+ * @return {Node} The node at the front of the list (hence, the new node).
  */
 export default function unshift(x, value) {
 	if (x === null) return new Node(value);

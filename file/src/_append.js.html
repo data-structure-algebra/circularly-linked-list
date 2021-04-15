@@ -48,17 +48,20 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/_append.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import assert from &apos;assert&apos;;
+import Node from &apos;./Node.js&apos;;
 
 /**
  * Optimization of {@link _concat} when &lt;code&gt;x&lt;/code&gt; contains a single element.
  * Works even if &lt;code&gt;x&lt;/code&gt; has dangling pointers &lt;code&gt;x.next&lt;/code&gt; and &lt;code&gt;x.prev&lt;/code&gt;.
  *
- * @param {Node} a - First node of list.
- * @param {Node} x - Node to be inserted at the end of list.
+ * @param {Node} a First node of list.
+ * @param {Node} x Node to be inserted at the end of list.
  */
 export default function _append(a, x) {
-	assert(a !== null &amp;&amp; x !== null);
-	assert(x.next === x &amp;&amp; x.prev === x);
+	assert(a instanceof Node);
+	assert(x instanceof Node);
+	assert(x.next === x);
+	assert(x.prev === x);
 	// FROM a - b - c - d - a        x
 	//   TO a - b - c - d - x - a
 	const d = a.prev;

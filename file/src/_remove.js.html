@@ -48,6 +48,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/_remove.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import assert from &apos;assert&apos;;
+import Node from &apos;./Node.js&apos;;
 
 /**
  * Removes input {@link Node} from its list.
@@ -55,10 +56,10 @@
  * /!\ Pointers in the extracted node are left unchanged.
  * /!\ &lt;code&gt;x&lt;/code&gt; will have dangling pointers after removal if not single element.
  *
- * @param {Node} x - Node to remove.
+ * @param {Node} x Node to remove.
  */
 export default function _remove(x) {
-	assert(x !== null);
+	assert(x instanceof Node);
 	x.prev.next = x.next;
 	x.next.prev = x.prev;
 }

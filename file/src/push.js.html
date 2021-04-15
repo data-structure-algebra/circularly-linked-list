@@ -48,14 +48,16 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/push.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import assert from &apos;assert&apos;;
-import Node from &apos;./Node&apos;;
-import _append from &apos;./_append&apos;;
+import Node from &apos;./Node.js&apos;;
+import _append from &apos;./_append.js&apos;;
 
 /**
  * Push value to list.
  *
- * @param {Node} x - First node of first input list (can be null).
- * @param {Object} value - Value to push.
+ * @param {Node} x First node of first input list (can be null).
+ * @param {any} value Value to push.
+ * @return {Node} The node at the front of the list (new node if empty, input
+ * node otherwise).
  */
 export default function push(x, value) {
 	if (x === null) return new Node(value);
