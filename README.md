@@ -14,7 +14,7 @@ let list = from( "abc" ) ;
 
 [![License](https://img.shields.io/github/license/aureooms/js-cll.svg)](https://raw.githubusercontent.com/aureooms/js-cll/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/@aureooms/js-cll.svg)](https://www.npmjs.org/package/@aureooms/js-cll)
-[![Build](https://img.shields.io/travis/aureooms/js-cll/main.svg)](https://travis-ci.org/aureooms/js-cll/branches)
+[![Build](https://img.shields.io/travis/aureooms/js-cll/main.svg)](https://travis-ci.com/aureooms/js-cll/branches)
 [![Dependencies](https://img.shields.io/david/aureooms/js-cll.svg)](https://david-dm.org/aureooms/js-cll)
 [![Dev dependencies](https://img.shields.io/david/dev/aureooms/js-cll.svg)](https://david-dm.org/aureooms/js-cll?type=dev)
 [![GitHub issues](https://img.shields.io/github/issues/aureooms/js-cll.svg)](https://github.com/aureooms/js-cll/issues)
