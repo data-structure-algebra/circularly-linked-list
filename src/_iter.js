@@ -1,13 +1,16 @@
 import assert from 'assert';
+import Node from './Node.js';
 
 /**
  * Generator of nodes in list in order.
  *
- * @param {Node} first - First node of the list.
- * @return {Iterable}
+ * TODO yield values/keys instead?
+ *
+ * @param {Node} first First node of the list.
+ * @return {IterableIterator} Yields nodes of a list in order.
  */
 export default function* _iter(first) {
-	assert(first !== null);
+	assert(first instanceof Node);
 	let next = first;
 
 	do {

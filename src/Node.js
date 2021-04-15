@@ -1,10 +1,14 @@
 /**
  * Base node class.
  *
- * @param {Object} value - The value to hold.
+ * @class
+ * @param {any} value The value to hold.
  */
 export default function Node(value) {
-	this.value = value; // Key
-	this.prev = this; // Pointer to previous (left) sibling
-	this.next = this; // Pointer to next (right) sibling
+	/** @member {any} The value/key held by this node. */
+	this.value = value;
+	/** @member {Node} Pointer to previous (left) sibling */
+	this.prev = this;
+	/** @member {Node} Pointer to next (right) sibling */
+	this.next = this;
 }
