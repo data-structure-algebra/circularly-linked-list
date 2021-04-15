@@ -14,5 +14,5 @@ Then, import the library where needed
 ```js
 const cll = require( '@aureooms/js-cll' ) ;
 // or
-import cll from '@aureooms/js-cll' ;
+import * as cll from '@aureooms/js-cll' ;
 ```
