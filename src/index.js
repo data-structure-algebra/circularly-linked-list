@@ -26,7 +26,7 @@ export default {
 	pop,
 	push,
 	shift,
-	unshift
+	unshift,
 };
 
 export {
@@ -42,5 +42,5 @@ export {
 	pop,
 	push,
 	shift,
-	unshift
+	unshift,
 };

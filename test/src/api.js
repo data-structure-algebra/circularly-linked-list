@@ -2,7 +2,16 @@ import test from 'ava';
 
 import {list, map} from '@aureooms/js-itertools';
 
-import {empty, from, push, pop, shift, unshift, concat, iter} from '../../src/index.js';
+import {
+	empty,
+	from,
+	push,
+	pop,
+	shift,
+	unshift,
+	concat,
+	iter,
+} from '../../src/index.js';
 
 const values = (first) => list(map((x) => x.value, iter(first)));
 
