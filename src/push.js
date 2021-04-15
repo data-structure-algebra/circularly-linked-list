@@ -1,6 +1,6 @@
 import assert from 'assert';
-import Node from './Node';
-import _append from './_append';
+import Node from './Node.js';
+import _append from './_append.js';
 
 /**
  * Push value to list.

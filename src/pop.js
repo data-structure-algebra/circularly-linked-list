@@ -1,6 +1,6 @@
 import assert from 'assert';
-import Node from './Node';
-import _remove from './_remove';
+import Node from './Node.js';
+import _remove from './_remove.js';
 
 /**
  * Removes last {@link Node} from a list.

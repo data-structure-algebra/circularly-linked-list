@@ -2,7 +2,7 @@ import test from 'ava';
 
 import {list, range, map} from '@aureooms/js-itertools';
 
-import {from, concat, iter} from '../../src';
+import {from, concat, iter} from '../../src/index.js';
 
 function macro(t, A, B) {
 	const _A = from(A);

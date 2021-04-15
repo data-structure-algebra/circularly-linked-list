@@ -1,4 +1,4 @@
-import _iter from './_iter';
+import _iter from './_iter.js';
 /**
  * Generator of nodes in list in order.
  *

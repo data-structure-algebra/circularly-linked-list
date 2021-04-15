@@ -1,5 +1,5 @@
-import Node from './Node';
-import _append from './_append';
+import Node from './Node.js';
+import _append from './_append.js';
 
 /**
  * Creates a list from an input iterable.

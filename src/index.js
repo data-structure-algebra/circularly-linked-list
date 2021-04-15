@@ -1,16 +1,16 @@
-import Node from './Node';
-import _append from './_append';
-import _concat from './_concat';
-import _iter from './_iter';
-import _remove from './_remove';
-import concat from './concat';
-import empty from './empty';
-import from from './from';
-import iter from './iter';
-import pop from './pop';
-import push from './push';
-import shift from './shift';
-import unshift from './unshift';
+import Node from './Node.js';
+import _append from './_append.js';
+import _concat from './_concat.js';
+import _iter from './_iter.js';
+import _remove from './_remove.js';
+import concat from './concat.js';
+import empty from './empty.js';
+import from from './from.js';
+import iter from './iter.js';
+import pop from './pop.js';
+import push from './push.js';
+import shift from './shift.js';
+import unshift from './unshift.js';
 
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {

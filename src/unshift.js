@@ -1,6 +1,6 @@
 import assert from 'assert';
-import Node from './Node';
-import _concat from './_concat';
+import Node from './Node.js';
+import _concat from './_concat.js';
 
 /**
  * Unshift value to list.

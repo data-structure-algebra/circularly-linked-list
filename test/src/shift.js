@@ -2,7 +2,7 @@ import test from 'ava';
 
 import {list, range, map} from '@aureooms/js-itertools';
 
-import {from, shift, iter} from '../../src';
+import {from, shift, iter} from '../../src/index.js';
 
 function throws(t, array) {
 	const node = from(array);
