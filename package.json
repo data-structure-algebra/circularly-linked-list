@@ -193,6 +193,14 @@
     "rules": {
       "camelcase": "off",
       "unicorn/filename-case": "off"
-    }
+    },
+    "overrides": [
+      {
+        "files": [
+          "doc/**"
+        ],
+        "env": "browser"
+      }
+    ]
   }
 }
