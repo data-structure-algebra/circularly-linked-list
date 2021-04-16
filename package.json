@@ -202,6 +202,7 @@
     ],
     "rules": {
       "camelcase": "off",
+      "unicorn/prevent-abbreviations": "off",
       "unicorn/filename-case": "off"
     },
     "overrides": [
