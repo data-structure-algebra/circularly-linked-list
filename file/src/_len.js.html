@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/pop.js | @aureooms/js-cll</title>
+  <title data-ice="title">src/_len.js | @aureooms/js-cll</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -56,22 +56,26 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/pop.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/_len.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import assert from &apos;assert&apos;;
 import Node from &apos;./Node.js&apos;;
-import _pop from &apos;./_pop.js&apos;;
 
 /**
- * Removes last {@link Node} from a list. Throws if input list is empty.
+ * Compute the length of a non-empty list.
  *
- * @param {Node} x First node.
- * @return {[Node, Node]} New list (possibly null) and removed node.
+ * @param {Node} x First node of the input list.
+ * @return {number} The length of the input list.
  */
-export default function pop(x) {
-	if (x === null) throw new Error(&apos;input list is empty&apos;);
+export default function _len(x) {
 	assert(x instanceof Node);
-	const node = x.prev;
-	return [_pop(x), node];
+	let n = 1;
+	let y = x.next;
+	while (y !== x) {
+		++n;
+		y = y.next;
+	}
+
+	return n;
 }
 </code></pre>
 

@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 13,
-  "actualCount": 13,
+  "expectCount": 23,
+  "actualCount": 23,
   "files": {
     "src/Node.js": {
       "expectCount": 1,
@@ -23,7 +23,37 @@
       "actualCount": 1,
       "undocumentLines": []
     },
+    "src/_iter_fast.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/_len.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/_pop.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
     "src/_remove.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/_rotate_left.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/_rotate_right.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/_shift.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
@@ -48,6 +78,11 @@
       "actualCount": 1,
       "undocumentLines": []
     },
+    "src/len.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
     "src/pop.js": {
       "expectCount": 1,
       "actualCount": 1,
@@ -58,12 +93,27 @@
       "actualCount": 1,
       "undocumentLines": []
     },
+    "src/rotate_left.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/rotate_right.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
     "src/shift.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
     "src/unshift.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/values.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []

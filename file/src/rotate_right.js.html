@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/pop.js | @aureooms/js-cll</title>
+  <title data-ice="title">src/rotate_right.js | @aureooms/js-cll</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -56,22 +56,27 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/pop.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/rotate_right.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import assert from &apos;assert&apos;;
 import Node from &apos;./Node.js&apos;;
-import _pop from &apos;./_pop.js&apos;;
+import _rotate_left from &apos;./_rotate_left.js&apos;;
+import _rotate_right from &apos;./_rotate_right.js&apos;;
 
 /**
- * Removes last {@link Node} from a list. Throws if input list is empty.
+ * Do nothing if x is empty or n is zero.
+ * Rotate right n steps if n is positive.
+ * Rotate left n steps if n is negative.
  *
- * @param {Node} x First node.
- * @return {[Node, Node]} New list (possibly null) and removed node.
+ * @param {Node} x The current first node.
+ * @param {number} n
+ * @return {Node} The new first node.
  */
-export default function pop(x) {
-	if (x === null) throw new Error(&apos;input list is empty&apos;);
+export default function rotate_right(x, n) {
+	assert(Number.isInteger(n));
+	if (x === null) return null;
 	assert(x instanceof Node);
-	const node = x.prev;
-	return [_pop(x), node];
+	if (n === 0) return x;
+	return n &gt; 0 ? _rotate_right(x, n) : _rotate_left(x, -n);
 }
 </code></pre>
 

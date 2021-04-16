@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/pop.js | @aureooms/js-cll</title>
+  <title data-ice="title">src/values.js | @aureooms/js-cll</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -56,22 +56,22 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/pop.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/values.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import assert from &apos;assert&apos;;
+import _iter_fast from &apos;./_iter_fast.js&apos;;
 import Node from &apos;./Node.js&apos;;
-import _pop from &apos;./_pop.js&apos;;
 
 /**
- * Removes last {@link Node} from a list. Throws if input list is empty.
+ * Generator of nodes in list in order.
  *
- * @param {Node} x First node.
- * @return {[Node, Node]} New list (possibly null) and removed node.
+ * @param {Node} first First node of the list (can be null).
+ * @return {IterableIterator&lt;any&gt;}
  */
-export default function pop(x) {
-	if (x === null) throw new Error(&apos;input list is empty&apos;);
-	assert(x instanceof Node);
-	const node = x.prev;
-	return [_pop(x), node];
+export default function* values(first) {
+	assert(first === null || first instanceof Node);
+	if (first !== null) {
+		for (const x of _iter_fast(first)) yield x.value;
+	}
 }
 </code></pre>
 
