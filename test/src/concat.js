@@ -2,6 +2,8 @@ import test from 'ava';
 
 import {list, range, map} from '@aureooms/js-itertools';
 
+import {str} from './_fixtures.js';
+
 import {from, concat, iter} from '../../src/index.js';
 
 function macro(t, A, B) {
@@ -14,13 +16,7 @@ function macro(t, A, B) {
 	t.deepEqual(expected, result);
 }
 
-function string(array) {
-	const s = JSON.stringify(array);
-	if (s <= 40) return s;
-	return s.slice(0, 19) + '..' + s.slice(-19);
-}
-
-macro.title = (title, A, B) => title || `concat(${string(A)}, ${string(B)})`;
+macro.title = (title, A, B) => title || `concat(${str(A)}, ${str(B)})`;
 
 test(macro, [], []);
 test(macro, [], [1]);

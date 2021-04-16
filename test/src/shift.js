@@ -2,6 +2,8 @@ import test from 'ava';
 
 import {list, range, map} from '@aureooms/js-itertools';
 
+import {str} from './_fixtures.js';
+
 import {from, shift, iter} from '../../src/index.js';
 
 function throws(t, array) {
@@ -10,7 +12,7 @@ function throws(t, array) {
 	t.throws(() => shift(node), {message: /empty/});
 }
 
-throws.title = (title, array) => title || `shift(${string(array)}) ~> throws`;
+throws.title = (title, array) => title || `shift(${str(array)}) ~> throws`;
 
 function macro(t, array) {
 	const node = from(array);
@@ -20,14 +22,7 @@ function macro(t, array) {
 	t.deepEqual(array.slice(1), result);
 }
 
-macro.title = (title, array) =>
-	title || `shift(${string(array)}) ~> ${array[0]}`;
-
-function string(array) {
-	const s = JSON.stringify(array);
-	if (s <= 40) return s;
-	return s.slice(0, 19) + '..' + s.slice(-19);
-}
+macro.title = (title, array) => title || `shift(${str(array)}) ~> ${array[0]}`;
 
 test(throws, []);
 test(macro, [27]);

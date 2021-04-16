@@ -2,6 +2,8 @@ import test from 'ava';
 
 import {list, range, map} from '@aureooms/js-itertools';
 
+import {str} from './_fixtures.js';
+
 import {from, pop, iter} from '../../src/index.js';
 
 function throws(t, array) {
@@ -10,7 +12,7 @@ function throws(t, array) {
 	t.throws(() => pop(node), {message: /empty/});
 }
 
-throws.title = (title, array) => title || `pop(${string(array)}) ~> throws`;
+throws.title = (title, array) => title || `pop(${str(array)}) ~> throws`;
 
 function macro(t, array) {
 	const node = from(array);
@@ -21,13 +23,7 @@ function macro(t, array) {
 }
 
 macro.title = (title, array) =>
-	title || `pop(${string(array)}) ~> ${array[array.length - 1]}`;
-
-function string(array) {
-	const s = JSON.stringify(array);
-	if (s <= 40) return s;
-	return s.slice(0, 19) + '..' + s.slice(-19);
-}
+	title || `pop(${str(array)}) ~> ${array[array.length - 1]}`;
 
 test(throws, []);
 test(macro, [27]);
