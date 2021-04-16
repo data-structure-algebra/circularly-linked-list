@@ -1,10 +1,10 @@
 import test from 'ava';
 
-import {list, range, map} from '@aureooms/js-itertools';
+import {list, range} from '@aureooms/js-itertools';
 
 import {str} from './_fixtures.js';
 
-import {from, pop, iter} from '../../src/index.js';
+import {from, pop, values} from '../../src/index.js';
 
 function throws(t, array) {
 	const node = from(array);
@@ -18,7 +18,7 @@ function macro(t, array) {
 	const node = from(array);
 	const [after, last] = pop(node);
 	t.is(array[array.length - 1], last.value);
-	const result = list(map((x) => x.value, iter(after)));
+	const result = list(values(after));
 	t.deepEqual(array.slice(0, -1), result);
 }
 

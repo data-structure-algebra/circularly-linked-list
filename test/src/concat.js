@@ -1,10 +1,10 @@
 import test from 'ava';
 
-import {list, range, map} from '@aureooms/js-itertools';
+import {list, range} from '@aureooms/js-itertools';
 
 import {str} from './_fixtures.js';
 
-import {from, concat, iter} from '../../src/index.js';
+import {from, concat, values} from '../../src/index.js';
 
 function macro(t, A, B) {
 	const _A = from(A);
@@ -12,7 +12,7 @@ function macro(t, A, B) {
 	const _C = concat(_A, _B);
 
 	const expected = [].concat(A).concat(B);
-	const result = list(map((x) => x.value, iter(_C)));
+	const result = list(values(_C));
 	t.deepEqual(expected, result);
 }
 
