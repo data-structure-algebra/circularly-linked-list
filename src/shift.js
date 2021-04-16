@@ -1,6 +1,6 @@
 import assert from 'assert';
 import Node from './Node.js';
-import _remove from './_remove.js';
+import _shift from './_shift.js';
 
 /**
  * Removes first {@link Node} from a list. Throws if input list is empty.
@@ -11,6 +11,5 @@ import _remove from './_remove.js';
 export default function shift(x) {
 	if (x === null) throw new Error('input list is empty');
 	assert(x instanceof Node);
-	_remove(x);
-	return [x === x.next ? null : x.next, x];
+	return [_shift(x), x];
 }
