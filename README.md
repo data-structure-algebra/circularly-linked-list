@@ -1,8 +1,8 @@
-:repeat: [@aureooms/js-cll](https://aureooms.github.io/js-cll)
+:repeat: [@aureooms/js-cll](https://make-github-pseudonymous-again.github.io/js-cll)
 ==
 
 Circular Linked Lists for JavaScript.
-See [docs](https://aureooms.github.io/js-cll/index.html).
+See [docs](https://make-github-pseudonymous-again.github.io/js-cll/index.html).
 Parent is [@aureooms/js-data-structures](https://github.com/aureooms/js-data-structures).
 
 > :warning: The code requires `regeneratorRuntime` to be defined, for instance by importing
@@ -24,5 +24,5 @@ let list = from( "abc" ) ;
 [![Code maintainability](https://img.shields.io/codeclimate/maintainability/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/trends/churn)
 [![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-cll/main.svg)](https://codecov.io/gh/aureooms/js-cll)
 [![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-cll.svg)](https://codeclimate.com/github/aureooms/js-cll/trends/technical_debt)
-[![Documentation](https://aureooms.github.io/js-cll/badge.svg)](https://aureooms.github.io/js-cll/source.html)
+[![Documentation](https://make-github-pseudonymous-again.github.io/js-cll/badge.svg)](https://make-github-pseudonymous-again.github.io/js-cll/source.html)
 [![Package size](https://img.shields.io/bundlephobia/minzip/@aureooms/js-cll)](https://bundlephobia.com/result?p=@aureooms/js-cll)
