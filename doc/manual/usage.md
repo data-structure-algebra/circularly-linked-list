@@ -5,14 +5,14 @@
 
 First, require the polyfill at the entry point of your application
 ```js
-require( 'regenerator-runtime/runtime' );
+await import( 'regenerator-runtime/runtime.js' );
 // or
 import 'regenerator-runtime/runtime.js' ;
 ```
 
 Then, import the library where needed
 ```js
-const cll = require( '@data-structure-algebra/circularly-linked-list' ) ;
+const cll = await import( '@data-structure-algebra/circularly-linked-list' ) ;
 // or
 import * as cll from '@data-structure-algebra/circularly-linked-list' ;
 ```
