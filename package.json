@@ -1,7 +1,7 @@
 {
   "name": "@data-structure-algebra/circularly-linked-list",
   "description": "Circularly linked lists for JavaScript",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "license": "AGPL-3.0",
   "author": "make-github-pseudonymous-again",
   "homepage": "https://data-structure-algebra.github.io/circularly-linked-list",
