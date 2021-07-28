@@ -1,140 +1,140 @@
 window.esdocSearchIndex = [
   [
-    "@aureooms/js-cll/src/node.js~node",
+    "@data-structure-algebra/circularly-linked-list/src/node.js~node",
     "function/index.html#static-function-Node",
-    "<span>Node</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/Node.js</span>",
+    "<span>Node</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/Node.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/_append.js~_append",
+    "@data-structure-algebra/circularly-linked-list/src/_append.js~_append",
     "function/index.html#static-function-_append",
-    "<span>_append</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_append.js</span>",
+    "<span>_append</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/_append.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/_concat.js~_concat",
+    "@data-structure-algebra/circularly-linked-list/src/_concat.js~_concat",
     "function/index.html#static-function-_concat",
-    "<span>_concat</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_concat.js</span>",
+    "<span>_concat</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/_concat.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/_iter.js~_iter",
+    "@data-structure-algebra/circularly-linked-list/src/_iter.js~_iter",
     "function/index.html#static-function-_iter",
-    "<span>_iter</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_iter.js</span>",
+    "<span>_iter</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/_iter.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/_iter_fast.js~_iter_fast",
+    "@data-structure-algebra/circularly-linked-list/src/_iter_fast.js~_iter_fast",
     "function/index.html#static-function-_iter_fast",
-    "<span>_iter_fast</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_iter_fast.js</span>",
+    "<span>_iter_fast</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/_iter_fast.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/_len.js~_len",
+    "@data-structure-algebra/circularly-linked-list/src/_len.js~_len",
     "function/index.html#static-function-_len",
-    "<span>_len</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_len.js</span>",
+    "<span>_len</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/_len.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/_pop.js~_pop",
+    "@data-structure-algebra/circularly-linked-list/src/_pop.js~_pop",
     "function/index.html#static-function-_pop",
-    "<span>_pop</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_pop.js</span>",
+    "<span>_pop</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/_pop.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/_remove.js~_remove",
+    "@data-structure-algebra/circularly-linked-list/src/_remove.js~_remove",
     "function/index.html#static-function-_remove",
-    "<span>_remove</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_remove.js</span>",
+    "<span>_remove</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/_remove.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/_rotate_left.js~_rotate_left",
+    "@data-structure-algebra/circularly-linked-list/src/_rotate_left.js~_rotate_left",
     "function/index.html#static-function-_rotate_left",
-    "<span>_rotate_left</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_rotate_left.js</span>",
+    "<span>_rotate_left</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/_rotate_left.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/_rotate_right.js~_rotate_right",
+    "@data-structure-algebra/circularly-linked-list/src/_rotate_right.js~_rotate_right",
     "function/index.html#static-function-_rotate_right",
-    "<span>_rotate_right</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_rotate_right.js</span>",
+    "<span>_rotate_right</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/_rotate_right.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/_shift.js~_shift",
+    "@data-structure-algebra/circularly-linked-list/src/_shift.js~_shift",
     "function/index.html#static-function-_shift",
-    "<span>_shift</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/_shift.js</span>",
+    "<span>_shift</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/_shift.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/concat.js~concat",
+    "@data-structure-algebra/circularly-linked-list/src/concat.js~concat",
     "function/index.html#static-function-concat",
-    "<span>concat</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/concat.js</span>",
+    "<span>concat</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/concat.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/empty.js~empty",
+    "@data-structure-algebra/circularly-linked-list/src/empty.js~empty",
     "function/index.html#static-function-empty",
-    "<span>empty</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/empty.js</span>",
+    "<span>empty</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/empty.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/from.js~from",
+    "@data-structure-algebra/circularly-linked-list/src/from.js~from",
     "function/index.html#static-function-from",
-    "<span>from</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/from.js</span>",
+    "<span>from</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/from.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/iter.js~iter",
+    "@data-structure-algebra/circularly-linked-list/src/iter.js~iter",
     "function/index.html#static-function-iter",
-    "<span>iter</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/iter.js</span>",
+    "<span>iter</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/iter.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/len.js~len",
+    "@data-structure-algebra/circularly-linked-list/src/len.js~len",
     "function/index.html#static-function-len",
-    "<span>len</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/len.js</span>",
+    "<span>len</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/len.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/pop.js~pop",
+    "@data-structure-algebra/circularly-linked-list/src/pop.js~pop",
     "function/index.html#static-function-pop",
-    "<span>pop</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/pop.js</span>",
+    "<span>pop</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/pop.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/push.js~push",
+    "@data-structure-algebra/circularly-linked-list/src/push.js~push",
     "function/index.html#static-function-push",
-    "<span>push</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/push.js</span>",
+    "<span>push</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/push.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/rotate_left.js~rotate_left",
+    "@data-structure-algebra/circularly-linked-list/src/rotate_left.js~rotate_left",
     "function/index.html#static-function-rotate_left",
-    "<span>rotate_left</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/rotate_left.js</span>",
+    "<span>rotate_left</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/rotate_left.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/rotate_right.js~rotate_right",
+    "@data-structure-algebra/circularly-linked-list/src/rotate_right.js~rotate_right",
     "function/index.html#static-function-rotate_right",
-    "<span>rotate_right</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/rotate_right.js</span>",
+    "<span>rotate_right</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/rotate_right.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/shift.js~shift",
+    "@data-structure-algebra/circularly-linked-list/src/shift.js~shift",
     "function/index.html#static-function-shift",
-    "<span>shift</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/shift.js</span>",
+    "<span>shift</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/shift.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/unshift.js~unshift",
+    "@data-structure-algebra/circularly-linked-list/src/unshift.js~unshift",
     "function/index.html#static-function-unshift",
-    "<span>unshift</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/unshift.js</span>",
+    "<span>unshift</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/unshift.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-cll/src/values.js~values",
+    "@data-structure-algebra/circularly-linked-list/src/values.js~values",
     "function/index.html#static-function-values",
-    "<span>values</span> <span class=\"search-result-import-path\">@aureooms/js-cll/src/values.js</span>",
+    "<span>values</span> <span class=\"search-result-import-path\">@data-structure-algebra/circularly-linked-list/src/values.js</span>",
     "function"
   ],
   [
