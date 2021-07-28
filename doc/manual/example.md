@@ -1,3 +1,3 @@
 # Examples
 
-> More examples in [the test files](https://github.com/make-github-pseudonymous-again/js-cll/tree/main/test/src).
+> More examples in [the test files](https://github.com/data-structure-algebra/circularly-linked-list/tree/main/test/src).

@@ -1,6 +1,8 @@
 import test from 'ava';
 
-import {list, range, map} from '@aureooms/js-itertools';
+import {list} from '@iterable-iterator/list';
+import {range} from '@iterable-iterator/range';
+import {map} from '@iterable-iterator/map';
 
 import {str} from './_fixtures.js';
 

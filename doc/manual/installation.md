@@ -8,15 +8,15 @@ or [jspm](https://jspm.org/docs).
 
 ### yarn
 ```terminal
-yarn add @aureooms/js-cll
+yarn add @data-structure-algebra/circularly-linked-list
 ```
 
 ### npm
 ```terminal
-npm install @aureooms/js-cll --save
+npm install @data-structure-algebra/circularly-linked-list --save
 ```
 
 ### jspm
 ```terminal
-jspm install npm:@aureooms/js-cll
+jspm install npm:@data-structure-algebra/circularly-linked-list
 ```

@@ -1,9 +1,9 @@
-:repeat: [@aureooms/js-cll](https://make-github-pseudonymous-again.github.io/js-cll)
+:repeat: [@data-structure-algebra/circularly-linked-list](https://data-structure-algebra.github.io/circularly-linked-list)
 ==
 
 Circular Linked Lists for JavaScript.
-See [docs](https://make-github-pseudonymous-again.github.io/js-cll/index.html).
-Parent is [@aureooms/js-data-structures](https://github.com/make-github-pseudonymous-again/js-data-structures).
+See [docs](https://data-structure-algebra.github.io/circularly-linked-list/index.html).
+Parent is [js-data-structures](https://github.com/make-github-pseudonymous-again/js-data-structures).
 
 > :warning: The code requires `regeneratorRuntime` to be defined, for instance by importing
 > [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).
@@ -12,17 +12,17 @@ Parent is [@aureooms/js-data-structures](https://github.com/make-github-pseudony
 let list = from( "abc" ) ;
 ```
 
-[![License](https://img.shields.io/github/license/make-github-pseudonymous-again/js-cll.svg)](https://raw.githubusercontent.com/make-github-pseudonymous-again/js-cll/main/LICENSE)
-[![Version](https://img.shields.io/npm/v/@aureooms/js-cll.svg)](https://www.npmjs.org/package/@aureooms/js-cll)
-[![Tests](https://img.shields.io/github/workflow/status/make-github-pseudonymous-again/js-cll/ci:test?event=push&label=tests)](https://github.com/make-github-pseudonymous-again/js-cll/actions/workflows/ci:test.yml?query=branch:main)
-[![Dependencies](https://img.shields.io/david/make-github-pseudonymous-again/js-cll.svg)](https://david-dm.org/make-github-pseudonymous-again/js-cll)
-[![Dev dependencies](https://img.shields.io/david/dev/make-github-pseudonymous-again/js-cll.svg)](https://david-dm.org/make-github-pseudonymous-again/js-cll?type=dev)
-[![GitHub issues](https://img.shields.io/github/issues/make-github-pseudonymous-again/js-cll.svg)](https://github.com/make-github-pseudonymous-again/js-cll/issues)
-[![Downloads](https://img.shields.io/npm/dm/@aureooms/js-cll.svg)](https://www.npmjs.org/package/@aureooms/js-cll)
+[![License](https://img.shields.io/github/license/data-structure-algebra/circularly-linked-list.svg)](https://raw.githubusercontent.com/data-structure-algebra/circularly-linked-list/main/LICENSE)
+[![Version](https://img.shields.io/npm/v/@data-structure-algebra/circularly-linked-list.svg)](https://www.npmjs.org/package/@data-structure-algebra/circularly-linked-list)
+[![Tests](https://img.shields.io/github/workflow/status/data-structure-algebra/circularly-linked-list/ci:test?event=push&label=tests)](https://github.com/data-structure-algebra/circularly-linked-list/actions/workflows/ci:test.yml?query=branch:main)
+[![Dependencies](https://img.shields.io/david/data-structure-algebra/circularly-linked-list.svg)](https://david-dm.org/data-structure-algebra/circularly-linked-list)
+[![Dev dependencies](https://img.shields.io/david/dev/data-structure-algebra/circularly-linked-list.svg)](https://david-dm.org/data-structure-algebra/circularly-linked-list?type=dev)
+[![GitHub issues](https://img.shields.io/github/issues/data-structure-algebra/circularly-linked-list.svg)](https://github.com/data-structure-algebra/circularly-linked-list/issues)
+[![Downloads](https://img.shields.io/npm/dm/@data-structure-algebra/circularly-linked-list.svg)](https://www.npmjs.org/package/@data-structure-algebra/circularly-linked-list)
 
-[![Code issues](https://img.shields.io/codeclimate/issues/make-github-pseudonymous-again/js-cll.svg)](https://codeclimate.com/github/make-github-pseudonymous-again/js-cll/issues)
-[![Code maintainability](https://img.shields.io/codeclimate/maintainability/make-github-pseudonymous-again/js-cll.svg)](https://codeclimate.com/github/make-github-pseudonymous-again/js-cll/trends/churn)
-[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/make-github-pseudonymous-again/js-cll/main.svg)](https://codecov.io/gh/make-github-pseudonymous-again/js-cll)
-[![Code technical debt](https://img.shields.io/codeclimate/tech-debt/make-github-pseudonymous-again/js-cll.svg)](https://codeclimate.com/github/make-github-pseudonymous-again/js-cll/trends/technical_debt)
-[![Documentation](https://make-github-pseudonymous-again.github.io/js-cll/badge.svg)](https://make-github-pseudonymous-again.github.io/js-cll/source.html)
-[![Package size](https://img.shields.io/bundlephobia/minzip/@aureooms/js-cll)](https://bundlephobia.com/result?p=@aureooms/js-cll)
+[![Code issues](https://img.shields.io/codeclimate/issues/data-structure-algebra/circularly-linked-list.svg)](https://codeclimate.com/github/data-structure-algebra/circularly-linked-list/issues)
+[![Code maintainability](https://img.shields.io/codeclimate/maintainability/data-structure-algebra/circularly-linked-list.svg)](https://codeclimate.com/github/data-structure-algebra/circularly-linked-list/trends/churn)
+[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/data-structure-algebra/circularly-linked-list/main.svg)](https://codecov.io/gh/data-structure-algebra/circularly-linked-list)
+[![Code technical debt](https://img.shields.io/codeclimate/tech-debt/data-structure-algebra/circularly-linked-list.svg)](https://codeclimate.com/github/data-structure-algebra/circularly-linked-list/trends/technical_debt)
+[![Documentation](https://data-structure-algebra.github.io/circularly-linked-list/badge.svg)](https://data-structure-algebra.github.io/circularly-linked-list/source.html)
+[![Package size](https://img.shields.io/bundlephobia/minzip/@data-structure-algebra/circularly-linked-list)](https://bundlephobia.com/result?p=@data-structure-algebra/circularly-linked-list)

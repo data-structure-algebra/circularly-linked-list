@@ -17,7 +17,7 @@
           "autoPrivate": true
         },
         "brand": {
-          "title": "@aureooms/js-cll"
+          "title": "@data-structure-algebra/circularly-linked-list"
         },
         "test": {
           "type": "ava",
