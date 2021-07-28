@@ -1,7 +1,7 @@
 :repeat: [@data-structure-algebra/circularly-linked-list](https://data-structure-algebra.github.io/circularly-linked-list)
 ==
 
-Circular Linked Lists for JavaScript.
+Circularly linked lists for JavaScript.
 See [docs](https://data-structure-algebra.github.io/circularly-linked-list/index.html).
 Parent is [js-data-structures](https://github.com/make-github-pseudonymous-again/js-data-structures).
 
@@ -9,7 +9,8 @@ Parent is [js-data-structures](https://github.com/make-github-pseudonymous-again
 > [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).
 
 ```js
-let list = from( "abc" ) ;
+import {from} from '@data-structure-algebra/circularly-linked-list';
+let list = from('abc');
 ```
 
 [![License](https://img.shields.io/github/license/data-structure-algebra/circularly-linked-list.svg)](https://raw.githubusercontent.com/data-structure-algebra/circularly-linked-list/main/LICENSE)
