@@ -18,7 +18,7 @@ domReady(() => {
 
 	const testlink = document.querySelector('header > a[data-ice="testLink"]');
 	testlink.href =
-		'https://coveralls.io/github/data-structure-algebra/circularly-linked-list';
+		'https://app.codecov.io/gh/data-structure-algebra/circularly-linked-list';
 	testlink.target = '_BLANK';
 
 	const searchBox = document.querySelector('.search-box');
