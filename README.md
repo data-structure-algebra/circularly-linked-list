@@ -5,7 +5,8 @@ Circularly linked lists for JavaScript.
 See [docs](https://data-structure-algebra.github.io/circularly-linked-list/index.html).
 Parent is [js-data-structures](https://github.com/make-github-pseudonymous-again/js-data-structures).
 
-> :warning: The code requires `regeneratorRuntime` to be defined, for instance by importing
+> :warning: Depending on your environment, the code may require
+> `regeneratorRuntime` to be defined, for instance by importing
 > [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).
 
 ```js
