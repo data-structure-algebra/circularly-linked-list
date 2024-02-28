@@ -4,6 +4,7 @@ import {list} from '@iterable-iterator/list';
 import {range} from '@iterable-iterator/range';
 
 import {str} from './_fixtures.js';
+
 import {from, pop, values} from '#module';
 
 function throws(t, array) {
@@ -17,13 +18,13 @@ throws.title = (title, array) => title || `pop(${str(array)}) ~> throws`;
 function macro(t, array) {
 	const node = from(array);
 	const [after, last] = pop(node);
-	t.is(array[array.length - 1], last.value);
+	t.is(array.at(-1), last.value);
 	const result = list(values(after));
 	t.deepEqual(array.slice(0, -1), result);
 }
 
 macro.title = (title, array) =>
-	title || `pop(${str(array)}) ~> ${array[array.length - 1]}`;
+	title || `pop(${str(array)}) ~> ${array.at(-1)}`;
 
 test(throws, []);
 test(macro, [27]);

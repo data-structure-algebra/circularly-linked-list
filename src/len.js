@@ -1,6 +1,7 @@
 import assert from 'assert';
-import _len from './_len.js';
+
 import Node from './Node.js';
+import _len from './_len.js';
 
 /**
  * Compute the length of a list (can be empty).

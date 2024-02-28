@@ -1,6 +1,7 @@
 import assert from 'assert';
-import _iter from './_iter.js';
+
 import Node from './Node.js';
+import _iter from './_iter.js';
 
 /**
  * Generator of nodes in list in order.

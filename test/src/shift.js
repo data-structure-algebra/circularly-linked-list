@@ -4,6 +4,7 @@ import {list} from '@iterable-iterator/list';
 import {range} from '@iterable-iterator/range';
 
 import {str} from './_fixtures.js';
+
 import {from, shift, values} from '#module';
 
 function throws(t, array) {

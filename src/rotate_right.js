@@ -1,4 +1,5 @@
 import assert from 'assert';
+
 import Node from './Node.js';
 import _rotate_left from './_rotate_left.js';
 import _rotate_right from './_rotate_right.js';

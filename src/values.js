@@ -1,6 +1,7 @@
 import assert from 'assert';
-import _iter_fast from './_iter_fast.js';
+
 import Node from './Node.js';
+import _iter_fast from './_iter_fast.js';
 
 /**
  * Generator of nodes in list in order.
