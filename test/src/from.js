@@ -4,8 +4,8 @@ import {list} from '@iterable-iterator/list';
 import {range} from '@iterable-iterator/range';
 import {map} from '@iterable-iterator/map';
 
-import {from, iter} from '../../src/index.js';
 import {str} from './_fixtures.js';
+import {from, iter} from '#module';
 
 function macro(t, array) {
 	const node = from(array);

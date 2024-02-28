@@ -3,8 +3,8 @@ import test from 'ava';
 import {list} from '@iterable-iterator/list';
 import {range} from '@iterable-iterator/range';
 
-import {from, concat, values} from '../../src/index.js';
 import {str} from './_fixtures.js';
+import {from, concat, values} from '#module';
 
 function macro(t, A, B) {
 	const _A = from(A);

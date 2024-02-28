@@ -2,16 +2,7 @@ import test from 'ava';
 
 import {list} from '@iterable-iterator/list';
 
-import {
-	empty,
-	from,
-	push,
-	pop,
-	shift,
-	unshift,
-	concat,
-	values,
-} from '../../src/index.js';
+import {empty, from, push, pop, shift, unshift, concat, values} from '#module';
 
 const toArray = (first) => list(values(first));
 

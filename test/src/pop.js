@@ -3,8 +3,8 @@ import test from 'ava';
 import {list} from '@iterable-iterator/list';
 import {range} from '@iterable-iterator/range';
 
-import {from, pop, values} from '../../src/index.js';
 import {str} from './_fixtures.js';
+import {from, pop, values} from '#module';
 
 function throws(t, array) {
 	const node = from(array);

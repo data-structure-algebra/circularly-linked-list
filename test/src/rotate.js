@@ -3,8 +3,8 @@ import test from 'ava';
 import {list} from '@iterable-iterator/list';
 import {range} from '@iterable-iterator/range';
 
-import {from, rotate_left, rotate_right, len, values} from '../../src/index.js';
 import {str} from './_fixtures.js';
+import {from, rotate_left, rotate_right, len, values} from '#module';
 
 const toArray = (first) => list(values(first));
 
