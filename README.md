@@ -16,7 +16,7 @@ let list = from('abc');
 
 [![License](https://img.shields.io/github/license/data-structure-algebra/circularly-linked-list.svg)](https://raw.githubusercontent.com/data-structure-algebra/circularly-linked-list/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/@data-structure-algebra/circularly-linked-list.svg)](https://www.npmjs.org/package/@data-structure-algebra/circularly-linked-list)
-[![Tests](https://img.shields.io/github/workflow/status/data-structure-algebra/circularly-linked-list/ci?event=push&label=tests)](https://github.com/data-structure-algebra/circularly-linked-list/actions/workflows/ci.yml?query=branch:main)
+[![Tests](https://img.shields.io/github/actions/workflow/status/data-structure-algebra/circularly-linked-list/ci.yml?branch=main&event=push&label=tests)](https://github.com/data-structure-algebra/circularly-linked-list/actions/workflows/ci.yml?query=branch:main)
 [![Dependencies](https://img.shields.io/librariesio/github/data-structure-algebra/circularly-linked-list.svg)](https://github.com/data-structure-algebra/circularly-linked-list/network/dependencies)
 [![GitHub issues](https://img.shields.io/github/issues/data-structure-algebra/circularly-linked-list.svg)](https://github.com/data-structure-algebra/circularly-linked-list/issues)
 [![Downloads](https://img.shields.io/npm/dm/@data-structure-algebra/circularly-linked-list.svg)](https://www.npmjs.org/package/@data-structure-algebra/circularly-linked-list)
